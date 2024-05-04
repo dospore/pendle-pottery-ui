@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { type BaseError, type UseReadContractsReturnType, useAccount, useReadContracts } from "wagmi";
+import { useMemo } from "react";
+import { useReadContracts } from "wagmi";
 import kilnAbi from "../contracts/kilnAbi.json";
 
 export const useKilns = (

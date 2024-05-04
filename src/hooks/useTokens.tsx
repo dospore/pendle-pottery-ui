@@ -1,13 +1,12 @@
 import { useMemo } from "react";
 import { useReadContracts } from "wagmi";
 import ytAbi from "../contracts/ytAbi.json";
-import type { TokenInfo } from "../types/shared";
 
 export const useTokens = (
   tokens: string[],
   account?: string,
 ): {
-  tokens: TokenInfo[];
+  tokens: any[];
   isPending: boolean;
   refetch: () => void;
 } => {

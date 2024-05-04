@@ -9,16 +9,19 @@ type Props = {
 
 const MintSummary = ({ depositAmountBn, ytTokenSymbol, ticketCost }: Props) => {
   const precision = BigInt(10 ** 18);
-  const tickets = (depositAmountBn * precision) / ticketCost;
+  const tickets = !ticketCost ? BigInt(0) : (depositAmountBn * precision) / ticketCost;
+
   return (
     <HStack align="left" justify="space-between" mb={2}>
       <Box>
         <Text variant="label" as="span">
           Ticket cost:
         </Text>{" "}
-        <Text as="span">
-          {formatBigInt(ticketCost)} {ytTokenSymbol} / ticket
-        </Text>
+        {ticketCost && (
+          <Text as="span">
+            {formatBigInt(ticketCost)} {ytTokenSymbol} / ticket
+          </Text>
+        )}
       </Box>
       <Box>
         <Text variant="label" as="span">

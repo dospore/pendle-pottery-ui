@@ -5,7 +5,6 @@ import kilnAbi from "../contracts/kilnAbi.json";
 import ytAbi from "../contracts/ytAbi.json";
 
 import { config } from "../providers/web3";
-import { abi } from "./abi";
 
 export const useMint = (): {
   mint: (ytAmount: bigint, tickets: bigint, kilnAddress: string, ytAddress: string) => Promise<void>;
@@ -31,6 +30,7 @@ export const useMint = (): {
         functionName: "allowance",
         args: [address, kilnAddress],
       }).catch((err) => {
+        console.debug(`Failed to check allowance(${address}, ${kilnAddress})`, err);
         throw "Failed to fetch allowance";
       });
 
@@ -43,6 +43,8 @@ export const useMint = (): {
         }).catch((err) => {
           throw "Failed to approve";
         });
+
+        await waitForTransactionReceipt(config, { hash: approveRes });
       }
 
       const hash = await writeContract(config, {
