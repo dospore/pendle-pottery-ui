@@ -3,10 +3,10 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 
 import History from "./pages/History";
+import Landing from "./pages/Landing";
 import Pool from "./pages/Pool";
 import Pools from "./pages/Pools";
 import Tickets from "./pages/Tickets";
-import Landing from "./pages/Landing";
 
 import HistoryProvider from "./providers/history";
 import PoolProvider from "./providers/pool";
@@ -26,9 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <Landing />
-        ),
+        element: <Landing />,
       },
       {
         path: "pools",
