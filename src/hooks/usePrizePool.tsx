@@ -2,9 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useReadContract } from "wagmi";
 import ytAbi from "../contracts/ytAbi.json";
 import { delay } from "../helpers/time";
-import { formatBigInt } from "../helpers/util";
+import { formatBigInt, parseBigInt } from "../helpers/util";
 
-const SECONDS_IN_YEAR = 60 * 60 * 24 * 365;
+const MILLI_SECONDS_IN_YEAR = BigInt(60 * 60 * 24 * 365 * 1000);
+const PERCENT_DECIMALS = BigInt(100);
 
 export const usePrizePool = (
   ytToken: address,
@@ -32,28 +33,30 @@ export const usePrizePool = (
     // TODO fetch yield bearing token apr fetchApr(ytToken);
     // TODO fetch yield bearing token price fetchTokenPrice(ytToken);
     delay(2000).then(() => {
-      // hardcoded to 0.05
-      setApr(0.05);
-      // hardcoded to $1
-      setYTTokenPrice(1);
+      // hardcoded to 5%
+      setApr(BigInt(100000));
+      // hardcoded to $100
+      setYTTokenPrice(parseBigInt(100));
     });
   }, []);
 
   const ytPrize = useMemo(() => {
-    if (!ytBalance) {
+    if (!ytBalance || !apr || !ytTokenPrice) {
       return {
         returns: BigInt(0),
         returnsUsd: BigInt(0),
       };
     }
 
-    const principal = formatBigInt(ytBalance);
-    const returns = principal * (1 + (apr * yieldDuration) / SECONDS_IN_YEAR) - principal;
-    const returnsUsd = returns * ytTokenPrice;
+    const principal = ytBalance;
+    const returnsInYear = (principal * apr) / BigInt(100);
+    const percentOfYear = (BigInt(yieldDuration) * BigInt(10 ** 18)) / MILLI_SECONDS_IN_YEAR;
+    const returns: bigint = (returnsInYear * percentOfYear) / BigInt(10 ** 18);
+    const returnsUsd: bigint = (returns * ytTokenPrice) / BigInt(10 ** 18);
 
     return {
-      returns,
-      returnsUsd,
+      returns: returns,
+      returnsUsd: returnsUsd,
     };
   }, [apr, ytTokenPrice, ytBalance]);
 

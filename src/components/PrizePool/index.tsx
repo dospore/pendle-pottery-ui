@@ -5,10 +5,11 @@ import { usePrizePool } from "../../hooks/usePrizePool";
 type Props = {
   ytTokenAddress: string;
   kilnAddress: string;
+  yieldDuration: number;
 };
 
-const PrizePool = ({ ytTokenAddress, kilnAddress }) => {
-  const { prize, prizeUsd, isPending } = usePrizePool(ytTokenAddress, kilnAddress);
+const PrizePool = ({ ytTokenAddress, kilnAddress, yieldDuration }) => {
+  const { prize, prizeUsd, isPending } = usePrizePool(ytTokenAddress, kilnAddress, yieldDuration);
 
   if (isPending) {
     return (

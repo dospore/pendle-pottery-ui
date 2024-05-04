@@ -54,6 +54,8 @@ type Props = {
 const DrawTable = ({ draws, isLoading, emptyText, status, rewardTokens }: Props) => {
   const action = getAction(status);
 
+  const now = Date.now();
+
   return (
     <TableContainer>
       <Table variant="simple">
@@ -75,35 +77,41 @@ const DrawTable = ({ draws, isLoading, emptyText, status, rewardTokens }: Props)
         </Thead>
         <Tbody>
           {draws.length === 0 && isLoading && <EmptyLoadingRow />}
-          {draws.map((draw) => (
-            <Tr key={draw.id}>
-              <Td>{draw.id}</Td>
-              <Td>
-                <PrizePool
-                  ytTokenAddress={draw.ytTokenAddress}
-                  kilnAddress={draw.kilnAddress}
-                  yieldDuration={draw.lotteryEndTimestamp - draw.mintWindowEndTimestamp}
-                />
-              </Td>
-              <Td>
-                <RewardTokenList allRewardTokens={rewardTokens} lottoRewardTokens={draw.rewardTokens} />
-              </Td>
-              <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
-              <Td isNumeric>{draw.tickets}</Td>
-              <Td>
-                <Countdown
-                  date={draw.status === Status.LIVE ? draw.mintWindowEndTimestamp : draw.lotteryEndTimestamp}
-                />
-              </Td>
-              <Td textAlign="right">
-                {action && (
-                  <Link to={action.route(draw.kilnAddress)}>
-                    <Button>{action.text}</Button>
-                  </Link>
-                )}
-              </Td>
-            </Tr>
-          ))}
+          {draws.map((draw) => {
+            const yieldDuration = Math.max(
+              draw.lotteryEndTimestamp - now,
+              draw.lotteryEndTimestamp - draw.mintWindowEndTimestamp,
+            );
+            return (
+              <Tr key={draw.id}>
+                <Td>{draw.id}</Td>
+                <Td>
+                  <PrizePool
+                    ytTokenAddress={draw.ytTokenAddress}
+                    kilnAddress={draw.kilnAddress}
+                    yieldDuration={yieldDuration}
+                  />
+                </Td>
+                <Td>
+                  <RewardTokenList allRewardTokens={rewardTokens} lottoRewardTokens={draw.rewardTokens} />
+                </Td>
+                <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
+                <Td isNumeric>{draw.tickets}</Td>
+                <Td>
+                  <Countdown
+                    date={draw.status === Status.LIVE ? draw.mintWindowEndTimestamp : draw.lotteryEndTimestamp}
+                  />
+                </Td>
+                <Td textAlign="right">
+                  {action && (
+                    <Link to={action.route(draw.kilnAddress)}>
+                      <Button>{action.text}</Button>
+                    </Link>
+                  )}
+                </Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </Table>
     </TableContainer>

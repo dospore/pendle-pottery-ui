@@ -7,7 +7,7 @@ import TokenLogo from "../TokenLogo";
 type Props = {
   selectedToken: Token;
   tokenBalance?: bigint;
-  value: number;
+  value: number | undefined;
   setValue: (v: number | string) => void;
   onTokenSelect?: () => void;
   disabled?: boolean;
@@ -92,7 +92,7 @@ const TokenInput = ({ value, setValue, selectedToken, tokenBalance, onTokenSelec
             <Text>Max</Text>
           </Button>
           <Input
-            value={value}
+            value={value ?? ""}
             variant="unstyled"
             w="full"
             px={2}

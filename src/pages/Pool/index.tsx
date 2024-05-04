@@ -32,6 +32,7 @@ export default function Pool() {
     ytTokenBalance,
     ytTokenSymbol,
     isFetchingYtToken,
+    ticketCost,
     prizePoolUsd,
     onMint,
     ytMintPending,
@@ -89,6 +90,7 @@ export default function Pool() {
                 ytMintError={ytMintError}
                 ytTokenSymbol={ytTokenSymbol}
                 ytTokenBalance={ytTokenBalance}
+                ticketCost={ticketCost}
                 disabled={!isReadyToBuy}
                 isLoading={isLoading}
               />
@@ -106,6 +108,7 @@ export default function Pool() {
                 ytMintError={ytMintError}
                 ytTokenSymbol={ytTokenSymbol}
                 ytTokenBalance={ytTokenBalance}
+                ticketCost={ticketCost}
                 disabled={!isReadyToBuy}
                 isLoading={isLoading}
               />

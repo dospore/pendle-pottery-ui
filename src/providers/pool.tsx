@@ -9,7 +9,7 @@ import type { Children } from "../types/react";
 import type { TokenInfo } from "../types/shared";
 
 type State = Draw & {
-  onMint: () => void;
+  onMint: (ytAmount: bigint, callback?: () => void) => void;
   isFetchingYtToken: boolean;
   ytMintPending: boolean;
   ytMintError?: string;
@@ -35,13 +35,16 @@ const PoolProvider = ({ children }: Children) => {
 
   // yt balance not decreasing
 
-  const onMint = async (ytAmount: bigint) => {
+  const onMint = async (ytAmount: bigint, callback) => {
     const ytAmountBn = parseBigInt(ytAmount);
     const tickets = ytAmountBn / draw.ticketCost;
 
     mint(ytAmountBn, tickets, draw.kilnAddress, draw.ytTokenAddress)
       .then(() => {
         ytTokenRefetch();
+        if (callback) {
+          callback();
+        }
       })
       .catch((err) => {
         console.debug("Failed to mint", err);
@@ -59,6 +62,8 @@ const PoolProvider = ({ children }: Children) => {
         rewardTokens: draw.rewardTokens,
         players: draw.players,
         tickets: draw.tickets,
+
+        ticketCost: draw.ticketCost,
 
         lotteryEndTimestamp: draw.lotteryEndTimestamp,
         mintWindowEndTimestamp: draw.mintWindowEndTimestamp,

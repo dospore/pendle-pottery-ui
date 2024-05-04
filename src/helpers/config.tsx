@@ -13,11 +13,11 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
   },
   [arbitrumSepolia.id]: {
     kilnAddresses: [
-      // "0x6C83Eb8daA2ed7970b3e158D8820139fC6721704",
-      // "0xa272c0e31814Bf86E60Df80BF2e8F7fEC66deCdD",
-      // "0xa12CEB573742e5e5408e33d4746B15308F7C4500",
-      // "0x43D290013129C59Cd8A55eD5cda8a82356C2Eb93",
       "0x6C7585eFe8ECE82548fe2BAC8bEcD98Ef26DFcb1",
+      "0xF794411d61fDa4156566f685D3F61Ba49019e618",
+      "0x816396d7B537d410D2e5A9A2351daA566002C649",
+      "0x85BCC08BE776AEE910e1b36F1A7Ae39db696D8e7",
+      "0xdc1caA5642578883f5BC5f6aB75119Bfd68b02d3",
     ],
     depositTokens: [
       {
@@ -27,7 +27,7 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
     ],
   },
   [mantle.id]: {
-    kilnAddresses: [],
+    kilnAddresses: ["0xA9abe6Cc1342d73Dbfcd43F8bEBB4906F8A4AeCd"],
     depositTokens: [
       {
         address: "0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9",
