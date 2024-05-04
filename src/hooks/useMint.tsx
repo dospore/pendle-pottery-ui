@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import { readContract, waitForTransactionReceipt, writeContract } from "@wagmi/core";
 import { useState } from "react";
 import { useAccount } from "wagmi";
@@ -11,6 +12,7 @@ export const useMint = (): {
   calling: boolean;
   error: string | undefined;
 } => {
+  const toast = useToast();
   const { address } = useAccount();
   const [calling, setCalling] = useState(false);
   const [error, setError] = useState<string | undefined>();
@@ -45,6 +47,14 @@ export const useMint = (): {
         });
 
         await waitForTransactionReceipt(config, { hash: approveRes });
+
+        toast({
+          title: `Approval success`,
+          status: "success",
+          duration: 5000,
+          position: "bottom-right",
+          isClosable: true,
+        });
       }
 
       const hash = await writeContract(config, {
@@ -59,9 +69,26 @@ export const useMint = (): {
       const result = await waitForTransactionReceipt(config, {
         hash,
       });
+      const isPlural = tickets > 1;
+      toast({
+        title: `${tickets} ticket${isPlural ? "s" : ""} minted`,
+        description: "Goodluck mate.",
+        status: "success",
+        duration: 5000,
+        position: "bottom-right",
+        isClosable: true,
+      });
       console.debug("Finished depositing YT", result);
     } catch (err) {
       console.error("Failed to mint", err);
+      toast({
+        title: `Failed to mint`,
+        description: err,
+        status: "error",
+        duration: 5000,
+        position: "bottom-right",
+        isClosable: true,
+      });
       setError(`Transaction failed: ${err}`);
     } finally {
       setCalling(false);

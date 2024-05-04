@@ -1,6 +1,7 @@
 import { Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import EmptyLoadingRow from "../../../components/EmptyLoadingRow";
 
+import PrizePool from "../../../components/PrizePool";
 import { formatBigInt, formatUsd } from "../../../helpers/util";
 import type { Draw } from "../../../types/lottery";
 
@@ -38,14 +39,11 @@ const DrawTable = ({ draws, isLoading }: Props) => {
             <Tr key={`${draw.id}-${draw.kilnAddress}`}>
               <Td>{draw.id}</Td>
               <Td>
-                <VStack spacing={0} align="left">
-                  <Text fontSize="md" fontWeight={600}>
-                    {formatBigInt(draw.prizePool)}
-                  </Text>
-                  <Text fontSize="sm" opacity={0.7}>
-                    {formatUsd(draw.prizePoolUsd)}
-                  </Text>
-                </VStack>
+                <PrizePool
+                  ytTokenAddress={draw.ytTokenAddress}
+                  kilnAddress={draw.kilnAddress}
+                  yieldDuration={draw.lotteryEndTimestamp - draw.mintWindowEndTimestamp}
+                />
               </Td>
               <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
               <Td isNumeric>{draw.tickets}</Td>
