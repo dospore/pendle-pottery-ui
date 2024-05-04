@@ -35,15 +35,15 @@ export default function Pools() {
         </Box>
         <Box>
           <HStack>
-            <PulsingIcon status={Status.CLEARING} />
-            <Text variant="label">Clearing</Text>
+            <PulsingIcon status={Status.LOCKED} />
+            <Text variant="label">Locked</Text>
           </HStack>
           <Card p={6}>
             <DrawTable
               draws={clearingDraws}
               isLoading={isLoading}
               emptyText="No auctions have cleared. Get buying."
-              status={Status.CLEARING}
+              status={Status.LOCKED}
               rewardTokens={rewardTokens}
             />
           </Card>

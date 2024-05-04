@@ -63,7 +63,7 @@ export const useDraw = (): Draw => {
     if (now > lotteryEndTimestamp) {
       kiln.status = Status.CLOSED;
     } else if (now > mintWindowEndTimestamp) {
-      kiln.status = Status.CLEARING;
+      kiln.status = Status.LOCKED;
     } else {
       kiln.status = Status.LIVE;
     }

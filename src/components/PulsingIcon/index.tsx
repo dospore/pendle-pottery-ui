@@ -8,7 +8,7 @@ const config: Record<
     keyFrames?: any;
   }
 > = {
-  [Status.CLEARING]: {
+  [Status.LOCKED]: {
     bg: "#0A5ED9",
     keyFrames: keyframes({
       "0%": {

@@ -13,7 +13,7 @@ const getAction = (status: Status) => {
       text: "Mint",
       route: (kilnAddress?: string) => `/pool/${kilnAddress}`,
     };
-  } else if (status === Status.CLEARING) {
+  } else if (status === Status.LOCKED) {
     return {
       text: "Buy Tickets",
       route: () => "/tickets",

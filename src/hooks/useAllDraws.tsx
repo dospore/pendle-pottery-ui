@@ -71,7 +71,7 @@ export const useAllDraws = (): AllDraws => {
         kiln.status = Status.CLOSED;
         res.closedDraws.push(kiln);
       } else if (now > mintWindowEndTimestamp) {
-        kiln.status = Status.CLEARING;
+        kiln.status = Status.LOCKED;
         res.clearingDraws.push(kiln);
       } else {
         kiln.status = Status.LIVE;

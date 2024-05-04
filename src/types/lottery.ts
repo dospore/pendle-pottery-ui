@@ -1,7 +1,7 @@
 import type { YTToken } from "./shared";
 
 export enum Status {
-  CLEARING = "clearing",
+  LOCKED = "locked",
   LIVE = "live",
   CLOSED = "closed",
 }
