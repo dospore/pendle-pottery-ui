@@ -13,10 +13,11 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
   },
   [arbitrumSepolia.id]: {
     kilnAddresses: [
-      "0x6C83Eb8daA2ed7970b3e158D8820139fC6721704",
-      "0xa272c0e31814Bf86E60Df80BF2e8F7fEC66deCdD",
-      "0xa12CEB573742e5e5408e33d4746B15308F7C4500",
-      "0x43D290013129C59Cd8A55eD5cda8a82356C2Eb93",
+      // "0x6C83Eb8daA2ed7970b3e158D8820139fC6721704",
+      // "0xa272c0e31814Bf86E60Df80BF2e8F7fEC66deCdD",
+      // "0xa12CEB573742e5e5408e33d4746B15308F7C4500",
+      // "0x43D290013129C59Cd8A55eD5cda8a82356C2Eb93",
+      "0x6C7585eFe8ECE82548fe2BAC8bEcD98Ef26DFcb1"
     ],
     depositTokens: [
       {

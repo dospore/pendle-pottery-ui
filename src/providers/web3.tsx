@@ -6,13 +6,13 @@ import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
 const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
-    chains: [arbitrum, arbitrumSepolia /* base, mantle */],
+    chains: [arbitrum, arbitrumSepolia, mantle, base],
     transports: {
       // RPC URL for each chain
       [arbitrum.id]: http(import.meta.env.VITE_PUBLIC_ARBITRUM_RPC),
       [arbitrumSepolia.id]: http(import.meta.env.VITE_PUBLIC_ARBITRUM_SEPOLIA_RPC),
-      // [base.id]: http(`https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_PUBLIC_ALCHEMY_ID}`),
-      // [mantle.id]: http(`https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_PUBLIC_ALCHEMY_ID}`),
+      [base.id]: http(import.meta.env.VITE_PUBLIC_BASE_RPC),
+      [mantle.id]: http(import.meta.env.VITE_PUBLIC_MANTLE_RPC)
     },
 
     // Required API Keys

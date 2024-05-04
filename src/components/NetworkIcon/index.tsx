@@ -5,12 +5,14 @@ import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
 import type { SupportedNetwork } from "../../types/shared";
 
 import arbitrum_icon from "../../assets/networks/arbitrum.webp";
+import base_icon from "../../assets/networks/base.webp";
+import mantle_icon from "../../assets/networks/mantle.svg";
 
 const networkIcons: Record<SupportedNetwork, any> = {
   [arbitrum.id]: arbitrum_icon,
   [arbitrumSepolia.id]: arbitrum_icon,
-  [base.id]: arbitrum_icon,
-  [mantle.id]: arbitrum_icon,
+  [base.id]: base_icon,
+  [mantle.id]: mantle_icon,
 };
 
 const NetworkIcon = () => {
