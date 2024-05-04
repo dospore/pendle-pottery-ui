@@ -54,22 +54,23 @@ export default function Pool() {
           <Box mb={4}>
             <Text variant="label">Step 1. Select token</Text>
             <Text fontSize="sm" opacity={0.7}>
-              You can either buy tickets with Pendle YT tokens or LP to Pendle with any supported ERC20 token.
+              You can buy tickets with Pendle YT token
             </Text>
             <Text fontSize="sm" opacity={0.7}>
-              When buying with ERC20 tokens our contracts auto swap minted YT into tickets but you will still keep your
-              PT tokens.
+              If you don't have any YT tokens you can buy from Pendle with any supported ERC20 token and then deposit
             </Text>
           </Box>
           <Tabs isFitted variant="soft-rounded" onChange={setTab}>
             <TabList mb="1em">
-              <Tab>Buy with YT</Tab>
-              <Tab>Pendle LP</Tab>
+              <Tab>Pay with YT</Tab>
+              <Tab>Pay with Tokens</Tab>
             </TabList>
           </Tabs>
         </Card>
         <Card p={6}>
-          <Text variant="label">Step 2. {tab === TabType.BuyWithTokens ? "Mint YT and PT" : "Buy tickets"}</Text>
+          <Text variant="label">
+            Step 2. {tab === TabType.BuyWithTokens ? "Buy YT from Pendle" : "Buy tickets with YT"}
+          </Text>
           <Box pt={6}>
             {tab === TabType.BuyWithYT && (
               <BuyWithYT
