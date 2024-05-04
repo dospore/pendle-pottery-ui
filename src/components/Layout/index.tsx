@@ -29,7 +29,7 @@ function Layout({ children }: Props) {
           <Box>
             <SideNav selectedNavIndex={paths[page]} />
           </Box>
-          <Box w="full" maxWidth={"calc(100vw - 100px)"} overflow="hidden">
+          <Box w="full" maxWidth={"calc(100vw - 100px)"} overflow="hidden" pb={12}>
             <TopNav />
             <Box w="full">{children}</Box>
           </Box>
