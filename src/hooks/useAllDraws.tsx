@@ -13,60 +13,16 @@ type AllDraws = {
   liveDraws: Draw[];
   clearingDraws: Draw[];
   closedDraws: Draw[];
-};
-
-const MOCK_STATE = {
-  liveDraws: [
-    {
-      id: 1,
-      prizePool: BigInt(8900000000000000000),
-      prizePoolUsd: BigInt(8900000000000000000),
-      rewardTokens: ["ETH"],
-      tickets: 42000,
-      players: 69,
-      drawTime,
-    },
-  ],
-  clearingDraws: [
-    {
-      id: 2,
-      prizePool: BigInt(900000000000000000),
-      prizePoolUsd: BigInt(900000000000000000),
-      rewardTokens: ["ETH"],
-      tickets: 1600,
-      players: 15,
-      drawTime,
-    },
-  ],
-  closedDraws: [
-    {
-      id: 420,
-      prizePool: BigInt(900000000000000000),
-      prizePoolUsd: BigInt(900000000000000000),
-      rewardTokens: ["ETH"],
-      tickets: 1600,
-      players: 15,
-      drawTime,
-    },
-    {
-      id: 69,
-      prizePool: BigInt(900000000000000000),
-      prizePoolUsd: BigInt(900000000000000000),
-      rewardTokens: ["ETH"],
-      tickets: 1600,
-      players: 15,
-      drawTime,
-    },
-  ],
+  isPending: boolean;
 };
 
 export const useAllDraws = (): AllDraws => {
   const { address } = useAccount();
   const { config } = useConfig();
 
-  const { kilns } = useKilns(config.kilnAddresses, address);
+  const { kilns, isPending } = useKilns(config.kilnAddresses, address);
 
-  return useMemo(() => {
+  const res = useMemo(() => {
     const now = Date.now();
 
     // collate all of it to be state
@@ -124,4 +80,11 @@ export const useAllDraws = (): AllDraws => {
 
     return res;
   }, [kilns]);
+
+  return {
+    isPending,
+    liveDraws: res.liveDraws,
+    clearingDraws: res.clearingDraws,
+    closedDraws: res.closedDraws,
+  };
 };

@@ -7,12 +7,13 @@ type State = {
   liveDraws: Draw[];
   clearingDraws: Draw[];
   closedDraws: Draw[];
+  isFetchingAllDraws: boolean;
 };
 
 const PoolsContext = createContext<State | null>(null);
 
 const PoolsProvider = ({ children }: Children) => {
-  const { liveDraws, clearingDraws, closedDraws } = useAllDraws();
+  const { liveDraws, clearingDraws, closedDraws, isPending: isFetchingAllDraws } = useAllDraws();
 
   return (
     <PoolsContext.Provider
@@ -20,6 +21,7 @@ const PoolsProvider = ({ children }: Children) => {
         liveDraws,
         clearingDraws,
         closedDraws,
+        isFetchingAllDraws,
       }}
     >
       {children}
