@@ -1,13 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useAccount } from "wagmi";
-import kilnAbi from "../contracts/kilnAbi.json";
 import { useConfig } from "../providers/config";
 import { Status } from "../types/lottery";
 import { useKilns } from "./useKilns";
 
 import type { Draw } from "../types/lottery";
-
-const drawTime = Date.now() + 1000 * 1000;
 
 type AllDraws = {
   liveDraws: Draw[];

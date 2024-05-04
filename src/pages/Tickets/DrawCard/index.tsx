@@ -1,4 +1,4 @@
-import { Box, Card, Collapse, Flex, HStack, Heading, Image, Text, VStack, useDisclosure } from "@chakra-ui/react";
+import { Box, Card, Collapse, Flex, HStack, Image, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import down_icon from "../../../assets/down.svg";
 import Countdown from "../../../components/Countdown";
 import { formatBigInt, formatUsd } from "../../../helpers/util";
@@ -18,10 +18,9 @@ const SeperatedRow = ({ left, right }: { left: React.ReactNode; right: React.Rea
 const DrawCard = ({
   title,
   draw,
-  position,
   icon,
   imageWidth,
-}: { title: string; draw: Draw; position: number; icon: any; imageWidth?: string }) => {
+}: { title: string; draw: Draw; icon: any; imageWidth?: string }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -49,7 +48,7 @@ const DrawCard = ({
         cursor="pointer"
         p={2}
         onClick={onToggle}
-        transition="0.3s"
+        transition={"0.3s"}
         _hover={{ bg: "gray.300" }}
         opacity={0.7}
         border="1px"
@@ -60,9 +59,8 @@ const DrawCard = ({
       >
         <Image src={down_icon} transition="0.3s" transform={isOpen ? "rotate(180deg)" : ""} boxSize="16px" />
       </Box>
-      <Collapse in={isOpen} animateOpacity transition="0.3s" endingHeight={isOpen ? "80px" : "0"}>
+      <Collapse in={isOpen} animateOpacity endingHeight={isOpen ? "80px" : "0"}>
         <VStack py={4} w="200px" spacing={"0"} align="left">
-          <SeperatedRow left={<Box w="116px">{"Players: "}</Box>} right={draw.players.toLocaleString()} />
           <SeperatedRow left={<Box w="116px">{"Tickets: "}</Box>} right={draw.tickets.toLocaleString()} />
         </VStack>
       </Collapse>

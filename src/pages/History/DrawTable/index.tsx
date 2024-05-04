@@ -1,7 +1,8 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack } from "@chakra-ui/react";
+import { Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import EmptyLoadingRow from "../../../components/EmptyLoadingRow";
 
 import { formatBigInt, formatUsd } from "../../../helpers/util";
+import type { Draw } from "../../../types/lottery";
 
 type Props = {
   draws: Draw[];

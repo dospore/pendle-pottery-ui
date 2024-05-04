@@ -8,7 +8,9 @@ import { config } from "../providers/web3";
 import { abi } from "./abi";
 
 export const useMint = (): {
-  mint: (amount: bigint, kilnAddress: string) => void;
+  mint: (ytAmount: bigint, tickets: bigint, kilnAddress: string, ytAddress: string) => Promise<void>;
+  calling: boolean;
+  error: string | undefined
 } => {
   const { address } = useAccount();
   const [calling, setCalling] = useState(false);

@@ -1,8 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { useAllDraws } from "../hooks/useAllDraws";
 import { useRewardTokens } from "../hooks/useRewardTokens";
 import type { Draw } from "../types/lottery";
 import type { Children } from "../types/react";
+import type { TokenInfo } from "../types/shared";
 
 type State = {
   liveDraws: Draw[];
@@ -18,7 +19,6 @@ const PoolsContext = createContext<State | null>(null);
 const PoolsProvider = ({ children }: Children) => {
   const { liveDraws, clearingDraws, closedDraws, isPending: isFetchingAllDraws, allRewardTokens } = useAllDraws();
   const { tokenInfo: rewardTokens, isPending: isFetchingRewardTokens } = useRewardTokens(allRewardTokens);
-  console.log("rewardTokens", rewardTokens);
 
   return (
     <PoolsContext.Provider

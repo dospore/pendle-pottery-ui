@@ -16,7 +16,6 @@ export const useDraws = (): {
       prizePoolUsd: BigInt(8900000000000000000),
       rewardTokens: ["ETH"],
       tickets: 42000,
-      players: 69,
       drawTime,
     },
     miniJackpot: {
@@ -25,7 +24,6 @@ export const useDraws = (): {
       prizePoolUsd: BigInt(900000000000000000),
       rewardTokens: ["ETH"],
       tickets: 1600,
-      players: 15,
       drawTime,
     },
     remainingDraws: [
@@ -35,7 +33,6 @@ export const useDraws = (): {
         prizePoolUsd: BigInt(900000000000000000),
         rewardTokens: ["ETH"],
         tickets: 1600,
-        players: 15,
         drawTime,
       },
       {
@@ -44,7 +41,6 @@ export const useDraws = (): {
         prizePoolUsd: BigInt(900000000000000000),
         rewardTokens: ["ETH"],
         tickets: 1600,
-        players: 15,
         drawTime,
       },
     ],

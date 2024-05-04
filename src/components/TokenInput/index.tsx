@@ -7,8 +7,8 @@ import TokenLogo from "../TokenLogo";
 type Props = {
   selectedToken: Token;
   tokenBalance?: bigint;
-  value: number | undefined;
-  setValue: (v: number | string) => void;
+  value: string | undefined;
+  setValue: (v: string) => void;
   onTokenSelect?: () => void;
   disabled?: boolean;
   isLoading: boolean;

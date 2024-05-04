@@ -7,12 +7,12 @@ export enum Status {
 }
 
 export type Draw = {
+  id: number;
   status: Status;
   kilnAddress: string;
 
   prizePool: bigint;
   prizePoolUsd: bigint;
-  rewardTokens: string[];
   tickets: number;
 
   drawTime: number;

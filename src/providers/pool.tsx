@@ -1,5 +1,4 @@
-import { createContext, useContext, useState } from "react";
-import { formatBigInt, parseBigInt } from "../helpers/util";
+import { createContext, useContext } from "react";
 import { useDepositTokens } from "../hooks/useDepositTokens";
 import { useDraw } from "../hooks/useDraw";
 import { useMint } from "../hooks/useMint";
@@ -23,7 +22,7 @@ const PoolProvider = ({ children }: Children) => {
   const draw = useDraw();
   const {
     tokenInfo: depositTokens,
-    refetch: depositTokenRefetch,
+    // refetch: depositTokenRefetch,
     isPending: isFetchingDepositTokens,
   } = useDepositTokens();
   const {
@@ -35,8 +34,7 @@ const PoolProvider = ({ children }: Children) => {
 
   // yt balance not decreasing
 
-  const onMint = async (ytAmount: bigint, callback) => {
-    const ytAmountBn = parseBigInt(ytAmount);
+  const onMint = async (ytAmountBn: bigint, callback?: () => void) => {
     const tickets = ytAmountBn / draw.ticketCost;
 
     mint(ytAmountBn, tickets, draw.kilnAddress, draw.ytTokenAddress)
@@ -55,12 +53,11 @@ const PoolProvider = ({ children }: Children) => {
     <PoolContext.Provider
       value={{
         status: draw.status,
-        address: draw.address,
+        address: draw.kilnAddress,
 
         prizePool: draw.prizePool,
         prizePoolUsd: draw.prizePoolUsd,
         rewardTokens: draw.rewardTokens,
-        players: draw.players,
         tickets: draw.tickets,
 
         ticketCost: draw.ticketCost,

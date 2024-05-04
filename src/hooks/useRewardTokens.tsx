@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import type { BaseError, UseReadContractsReturnType } from "wagmi";
-import ytAbi from "../contracts/ytAbi.json";
-import { useConfig } from "../providers/config";
+import { useMemo } from "react";
 import type { TokenInfo } from "../types/shared";
 import { useTokenSymbols } from "./useTokenSymbols";
 
@@ -12,7 +9,6 @@ export const useRewardTokens = (
   isPending: boolean;
   refetch: () => void;
 } => {
-  const { config } = useConfig();
   const { tokens, isPending, refetch } = useTokenSymbols(rewardTokens);
 
   const tokenInfo = useMemo(() => {

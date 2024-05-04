@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import { type BaseError, type UseReadContractsReturnType, useReadContracts } from "wagmi";
+import { useMemo } from "react";
+import { useReadContracts } from "wagmi";
 import ytAbi from "../contracts/ytAbi.json";
 import type { TokenInfo } from "../types/shared";
 
 export const useTokenSymbols = (
   tokens: string[],
 ): {
-  tokens: TokenInfo[];
+  tokens: TokenInfo[] | undefined;
   isPending: boolean;
   refetch: () => void;
 } => {

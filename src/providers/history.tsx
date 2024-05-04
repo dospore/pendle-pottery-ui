@@ -1,6 +1,7 @@
 import { useDisclosure } from "@chakra-ui/react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { useAllDraws } from "../hooks/useAllDraws";
+import type { Draw } from "../types/lottery";
 import type { Children } from "../types/react";
 
 type State = {

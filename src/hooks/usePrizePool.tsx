@@ -2,21 +2,22 @@ import { useEffect, useMemo, useState } from "react";
 import { useReadContract } from "wagmi";
 import ytAbi from "../contracts/ytAbi.json";
 import { delay } from "../helpers/time";
-import { formatBigInt, parseBigInt } from "../helpers/util";
+import { parseBigInt } from "../helpers/util";
 
 const MILLI_SECONDS_IN_YEAR = BigInt(60 * 60 * 24 * 365 * 1000);
-const PERCENT_DECIMALS = BigInt(100);
 
 export const usePrizePool = (
-  ytToken: address,
+  ytToken: string,
   kilnAddress: string,
   yieldDuration: number,
 ): {
   prize: bigint;
   prizeUsd: bigint;
+  isPending: boolean;
+  refetch: () => void;
 } => {
-  const [apr, setApr] = useState();
-  const [ytTokenPrice, setYTTokenPrice] = useState();
+  const [apr, setApr] = useState<bigint | undefined>();
+  const [ytTokenPrice, setYTTokenPrice] = useState<bigint | undefined>();
 
   const {
     data: ytBalance,
@@ -41,14 +42,14 @@ export const usePrizePool = (
   }, []);
 
   const ytPrize = useMemo(() => {
-    if (!ytBalance || !apr || !ytTokenPrice) {
+    if (!ytBalance|| !apr || !ytTokenPrice) {
       return {
         returns: BigInt(0),
         returnsUsd: BigInt(0),
       };
     }
 
-    const principal = ytBalance;
+    const principal: bigint = ytBalance;
     const returnsInYear = (principal * apr) / BigInt(100);
     const percentOfYear = (BigInt(yieldDuration) * BigInt(10 ** 18)) / MILLI_SECONDS_IN_YEAR;
     const returns: bigint = (returnsInYear * percentOfYear) / BigInt(10 ** 18);

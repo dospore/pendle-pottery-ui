@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
-import { type BaseError, type UseReadContractsReturnType, useAccount, useReadContracts } from "wagmi";
+import { useMemo } from "react";
+import { useReadContracts } from "wagmi";
 import ytAbi from "../contracts/ytAbi.json";
-import type { YTTokenInfo } from "../types/shared";
+import type { TokenInfo } from "../types/shared";
 
 export const useTokens = (
   tokens: string[],
   account?: string,
 ): {
-  tokens: YTTokenInfo[];
+  tokens: TokenInfo[];
   isPending: boolean;
   refetch: () => void;
 } => {

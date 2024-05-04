@@ -1,7 +1,6 @@
-import { Box, Card, Flex, HStack, Heading, Image, Switch, Text, VStack } from "@chakra-ui/react";
+import { Box, Card, HStack, Switch, Text, VStack } from "@chakra-ui/react";
 import TitleBox from "../../components/TitleBox";
 import { useHistory } from "../../providers/history";
-import { Draw } from "../../types/lottery";
 import DrawTable from "./DrawTable";
 
 export default function History() {

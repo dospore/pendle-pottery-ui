@@ -1,27 +1,20 @@
 import {
   Button,
-  Skeleton,
   Table,
   TableCaption,
   TableContainer,
   Tbody,
   Td,
-  Text,
-  Tfoot,
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-
 import { Link } from "react-router-dom";
-
 import Countdown from "../../../components/Countdown";
 import EmptyLoadingRow from "../../../components/EmptyLoadingRow";
 import PrizePool from "../../../components/PrizePool";
 import RewardTokenList from "../../../components/RewardTokenList";
-import { formatBigInt, formatUsd } from "../../../helpers/util";
-import { Status } from "../../../types/lottery";
+import { Status, Draw } from "../../../types/lottery";
 import type { TokenInfo } from "../../../types/shared";
 
 const getAction = (status: Status) => {

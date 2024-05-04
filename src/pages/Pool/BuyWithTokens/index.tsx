@@ -2,14 +2,14 @@ import { Box, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import TokenInput from "../../../components/TokenInput";
 import TokenSelectModal from "../../../components/TokenSelectModal";
-import type { TokenInfo } from "../../../types/shared";
+import type { Token, TokenInfo } from "../../../types/shared";
 
 type Props = {
   depositTokens: TokenInfo[];
   isLoading: boolean;
 };
 
-const BuyWithTokens = ({ depositTokens, isLoading }: Props) => {
+const BuyWithTokens = ({ depositTokens }: Props) => {
   const {
     isOpen: isTokenSelectModalOpen,
     onOpen: onTokenSelectModalOpen,
@@ -28,7 +28,7 @@ const BuyWithTokens = ({ depositTokens, isLoading }: Props) => {
   useEffect(() => {
     if (depositTokens.length) {
       const symbol = depositTokens[0].symbol.toLowerCase();
-      setSelectedToken(symbol);
+      setSelectedToken(symbol as string);
     }
   }, []);
 

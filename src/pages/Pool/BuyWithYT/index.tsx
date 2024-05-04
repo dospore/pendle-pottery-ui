@@ -1,16 +1,16 @@
-import { Box, Button, Spinner, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import MintSummary from "../../../components/MintSummary";
 import TokenInput from "../../../components/TokenInput";
-import TokenSelectModal from "../../../components/TokenSelectModal";
 import { parseBigInt } from "../../../helpers/util";
+import { YTToken } from "../../../types/shared";
 
 type Props = {
-  onMint: (amount: bigint) => void;
+  onMint: (amount: bigint, callback?: () => void) => void;
   ytMintPending: boolean;
   ytMintError?: string;
   ytTokenSymbol: YTToken;
-  ytTokenBalance: bigint;
+  ytTokenBalance?: bigint;
   ticketCost: bigint;
   disabled?: boolean;
   isLoading: boolean;
@@ -28,10 +28,10 @@ const BuyWithYT = ({
 }: Props) => {
   const [depositAmount, setDepositAmount] = useState<string | undefined>();
 
-  const depositAmountBn = depositAmount ? parseBigInt(depositAmount) : BigInt(0);
+  const depositAmountBn = depositAmount ? parseBigInt(Number(depositAmount)) : BigInt(0);
 
   const mintDisabled =
-    disabled || ytMintPending || !depositAmount || depositAmountBn === BigInt(0) || depositAmountBn > ytTokenBalance;
+    disabled || ytMintPending || !depositAmount || !ytTokenBalance || depositAmountBn === BigInt(0) || depositAmountBn > ytTokenBalance;
 
   const onFinishMinting = () => {
     setDepositAmount(undefined);
@@ -54,7 +54,7 @@ const BuyWithYT = ({
           </Text>
         )}
         <MintSummary depositAmountBn={depositAmountBn} ytTokenSymbol={ytTokenSymbol} ticketCost={ticketCost} />
-        <Button w="full" onClick={() => onMint(depositAmount, onFinishMinting)} isDisabled={mintDisabled}>
+        <Button w="full" onClick={() => onMint(depositAmountBn, onFinishMinting)} isDisabled={mintDisabled}>
           {ytMintPending ? <Spinner /> : `Mint`}
         </Button>
       </Box>

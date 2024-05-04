@@ -1,10 +1,9 @@
 import { useChainId } from "wagmi";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { getConfig } from "../helpers/config";
-import { useDraw } from "../hooks/useDraw";
-import type { Draw } from "../types/lottery";
 import type { Children } from "../types/react";
+import type { Config } from "../types/shared";
 
 type State = {
   config: Config;

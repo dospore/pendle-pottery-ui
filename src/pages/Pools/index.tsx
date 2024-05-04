@@ -1,5 +1,4 @@
-import { Box, Card, Flex, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
-import lotto_banner from "../../assets/lotto_banner.png";
+import { Box, Card, HStack, Text, VStack } from "@chakra-ui/react";
 import PulsingIcon from "../../components/PulsingIcon";
 import TitleBox from "../../components/TitleBox";
 import { usePools } from "../../providers/pools";
@@ -12,8 +11,6 @@ export default function Pools() {
 
   const isLoading = isFetchingAllDraws || isFetchingRewardTokens;
 
-  console.log("weeee", isFetchingAllDraws, isFetchingRewardTokens);
-
   return (
     <Box w="896px" mx="auto" mt={24}>
       <TitleBox
@@ -23,7 +20,7 @@ export default function Pools() {
       <VStack align="left" spacing="22px">
         <Box>
           <HStack>
-            <PulsingIcon status="live" />
+            <PulsingIcon status={Status.LIVE} />
             <Text variant="label">Live</Text>
           </HStack>
           <Card p={6}>
@@ -38,7 +35,7 @@ export default function Pools() {
         </Box>
         <Box>
           <HStack>
-            <PulsingIcon status="clearing" />
+            <PulsingIcon status={Status.CLEARING} />
             <Text variant="label">Clearing</Text>
           </HStack>
           <Card p={6}>
@@ -53,7 +50,7 @@ export default function Pools() {
         </Box>
         <Box>
           <HStack>
-            <PulsingIcon status="closed" />
+            <PulsingIcon status={Status.CLOSED} />
             <Text variant="label">Closed</Text>
           </HStack>
           <Card p={6}>

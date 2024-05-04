@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { type BaseError, type UseReadContractsReturnType, useAccount } from "wagmi";
-import ytAbi from "../contracts/ytAbi.json";
+import { useMemo } from "react";
+import { useAccount } from "wagmi";
 import type { TokenInfo } from "../types/shared";
 import { useTokens } from "./useTokens";
 
