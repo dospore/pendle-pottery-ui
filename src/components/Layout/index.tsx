@@ -1,6 +1,6 @@
 import { Box, Grid, Hide, Image, Show } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NavRouteIndex } from "../../types/nav";
 import MobilePlaceHolder from "../MobilePlaceHolder";
 import SideNav from "../SideNav";

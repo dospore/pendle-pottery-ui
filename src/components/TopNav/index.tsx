@@ -1,5 +1,5 @@
 import { Button, HStack, Image, Text } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import nouns_icon from "../../assets/nouns.png";
 import ConnectButton from "../ConnectButton";
 import NetworkButton from "../NetworkButton";

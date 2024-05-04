@@ -48,7 +48,7 @@ export const useAllDraws = (): AllDraws => {
 
       let localRewardTokens;
       if (config.fixedRewardTokens) {
-        localRewardTokens = [...config.fixedRewardTokens]
+        localRewardTokens = [...config.fixedRewardTokens];
       } else {
         localRewardTokens = rewardTokens;
       }
@@ -56,7 +56,6 @@ export const useAllDraws = (): AllDraws => {
       res.allRewardTokens.push(...localRewardTokens);
 
       const winner = kilns[i + 8].result;
-
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;

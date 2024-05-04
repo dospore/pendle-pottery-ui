@@ -11,8 +11,8 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
       },
     ],
     fixedRewardTokens: [
-      '0x0341c0c0ec423328621788d4854119b97f44e391' // silo
-    ]
+      "0x0341c0c0ec423328621788d4854119b97f44e391", // silo
+    ],
   },
   [arbitrumSepolia.id]: {
     kilnAddresses: [
@@ -45,8 +45,8 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
       },
     ],
     fixedRewardTokens: [
-      '0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34' // usde
-    ]
+      "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34", // usde
+    ],
   },
   [base.id]: {
     kilnAddresses: [],
