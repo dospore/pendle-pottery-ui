@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { type BaseError, useAccount, useReadContracts } from "wagmi";
+import { useConfig } from "../providers/config";
+import { useKilnBalances } from "./useKilnBalances";
 
 import type { Draw } from "../types/lottery";
 
@@ -69,6 +72,12 @@ const fetchDraws = async (): Promise<State> => {
 };
 
 export const useAllDraws = (): State => {
+  const { address } = useAccount();
+  const { config } = useConfig();
+  console.log("kilnAddresses", config.kilnAddresses);
+
+  const balances = useKilnBalances(config.kilnAddresses, address);
+
   const [draws, setDraws] = useState<State>({
     liveDraws: [],
     upcomingDraws: [],
