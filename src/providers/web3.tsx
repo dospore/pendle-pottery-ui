@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { http, WagmiProvider, createConfig } from "wagmi";
 import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
-import { Children } from '../types/react';
+import type { Children } from "../types/react";
 
 export const config = createConfig(
   getDefaultConfig({

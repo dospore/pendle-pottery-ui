@@ -1,20 +1,10 @@
-import {
-  Button,
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Button, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Countdown from "../../../components/Countdown";
 import EmptyLoadingRow from "../../../components/EmptyLoadingRow";
 import PrizePool from "../../../components/PrizePool";
 import RewardTokenList from "../../../components/RewardTokenList";
-import { Status, Draw } from "../../../types/lottery";
+import { type Draw, Status } from "../../../types/lottery";
 import type { TokenInfo } from "../../../types/shared";
 
 const getAction = (status: Status) => {
@@ -76,7 +66,7 @@ const DrawTable = ({ draws, isLoading, emptyText, status, rewardTokens }: Props)
               draw.lotteryEndTimestamp - draw.mintWindowEndTimestamp,
             );
             return (
-              <Tr key={draw.id}>
+              <Tr key={`${draw.id}-${draw.kilnAddress}`}>
                 <Td>{draw.id}</Td>
                 <Td>
                   <PrizePool

@@ -3,7 +3,7 @@ import { useState } from "react";
 import MintSummary from "../../../components/MintSummary";
 import TokenInput from "../../../components/TokenInput";
 import { parseBigInt } from "../../../helpers/util";
-import { YTToken } from "../../../types/shared";
+import type { YTToken } from "../../../types/shared";
 
 type Props = {
   onMint: (amount: bigint, callback?: () => void) => void;
@@ -31,7 +31,12 @@ const BuyWithYT = ({
   const depositAmountBn = depositAmount ? parseBigInt(Number(depositAmount)) : BigInt(0);
 
   const mintDisabled =
-    disabled || ytMintPending || !depositAmount || !ytTokenBalance || depositAmountBn === BigInt(0) || depositAmountBn > ytTokenBalance;
+    disabled ||
+    ytMintPending ||
+    !depositAmount ||
+    !ytTokenBalance ||
+    depositAmountBn === BigInt(0) ||
+    depositAmountBn > ytTokenBalance;
 
   const onFinishMinting = () => {
     setDepositAmount(undefined);

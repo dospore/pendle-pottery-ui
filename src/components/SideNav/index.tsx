@@ -45,7 +45,7 @@ const SideNav = ({ selectedNavIndex }: Props) => {
       </Link>
       <VStack align="middle" spacing={4}>
         {PATHS.map(({ text, route, icon, key }) => (
-          <Link to={route}>
+          <Link to={route} key={`nav-${route}`}>
             <VStack
               gap={"2px"}
               cursor="pointer"

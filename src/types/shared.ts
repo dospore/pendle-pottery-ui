@@ -1,4 +1,4 @@
-import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
+import type { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
 
 export type Token = "string";
 export type YTToken = "string";

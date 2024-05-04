@@ -10,7 +10,7 @@ const RewardTokenList = ({ allRewardTokens, lottoRewardTokens }) => (
   <HStack>
     {lottoRewardTokens.map((address) => {
       const t = allRewardTokens[address]?.symbol;
-      return <TokenLogo token={t ?? ""} />;
+      return <TokenLogo token={t ?? ""} key={address} />;
     })}
   </HStack>
 );

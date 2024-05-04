@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { useDraws } from "../hooks/useDraws";
-import type { Children } from "../types/react";
 import type { Draw } from "../types/lottery";
+import type { Children } from "../types/react";
 
 type State = {
   jackpot: Draw;

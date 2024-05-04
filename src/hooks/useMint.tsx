@@ -10,7 +10,7 @@ import { abi } from "./abi";
 export const useMint = (): {
   mint: (ytAmount: bigint, tickets: bigint, kilnAddress: string, ytAddress: string) => Promise<void>;
   calling: boolean;
-  error: string | undefined
+  error: string | undefined;
 } => {
   const { address } = useAccount();
   const [calling, setCalling] = useState(false);

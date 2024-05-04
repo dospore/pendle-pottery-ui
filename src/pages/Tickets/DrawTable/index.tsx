@@ -1,8 +1,8 @@
 import { Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 
 import Countdown from "../../../components/Countdown";
-import type { Draw } from "../../../types/lottery";
 import { formatBigInt, formatUsd } from "../../../helpers/util";
+import type { Draw } from "../../../types/lottery";
 
 type Props = {
   draws: Draw[];
@@ -24,7 +24,7 @@ const DrawTable = ({ draws }: Props) => {
         </Thead>
         <Tbody>
           {draws.map((draw) => (
-            <Tr key={draw.id}>
+            <Tr key={`${draw.id}-${draw.kilnAddress}`}>
               <Td>{draw.id}</Td>
               <Td>
                 <VStack spacing={0} align="left">

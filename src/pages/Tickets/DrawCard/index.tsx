@@ -15,12 +15,7 @@ const SeperatedRow = ({ left, right }: { left: React.ReactNode; right: React.Rea
   </HStack>
 );
 
-const DrawCard = ({
-  title,
-  draw,
-  icon,
-  imageWidth,
-}: { title: string; draw: Draw; icon: any; imageWidth?: string }) => {
+const DrawCard = ({ title, draw, icon, imageWidth }: { title: string; draw: Draw; icon: any; imageWidth?: string }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (

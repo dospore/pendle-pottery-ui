@@ -35,7 +35,7 @@ const DrawTable = ({ draws, isLoading }: Props) => {
             </>
           )}
           {draws.map((draw) => (
-            <Tr key={draw.id}>
+            <Tr key={`${draw.id}-${draw.kilnAddress}`}>
               <Td>{draw.id}</Td>
               <Td>
                 <VStack spacing={0} align="left">

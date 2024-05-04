@@ -42,7 +42,7 @@ export const usePrizePool = (
   }, []);
 
   const ytPrize = useMemo(() => {
-    if (!ytBalance|| !apr || !ytTokenPrice) {
+    if (!ytBalance || !apr || !ytTokenPrice) {
       return {
         returns: BigInt(0),
         returnsUsd: BigInt(0),

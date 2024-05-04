@@ -1,13 +1,5 @@
 import { ArrowLeftIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Card,
-  Tab,
-  TabList,
-  Tabs,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Card, Tab, TabList, Tabs, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { usePool } from "../../providers/pool";
@@ -37,7 +29,7 @@ export default function Pool() {
 
   const [tab, setTab] = useState<number>(0);
 
-  const isReadyToBuy = ytTokenBalance && (ytTokenBalance > BigInt(0));
+  const isReadyToBuy = ytTokenBalance && ytTokenBalance > BigInt(0);
 
   return (
     <Box w="700px" mx="auto" mt={24}>
