@@ -34,7 +34,7 @@ export const useRewardTokens = (
 
   return {
     tokenInfo,
-    isPending,
+    isPending: rewardTokens.length && isPending,
     refetch,
   };
 };

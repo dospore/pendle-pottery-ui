@@ -3,8 +3,8 @@ import type { Token } from "../../types/shared";
 
 import dai from "../../assets/tokens/dai.webp";
 import weth from "../../assets/tokens/eth.webp";
-import usdc from "../../assets/tokens/usdc.webp";
 import generic from "../../assets/tokens/generic.svg";
+import usdc from "../../assets/tokens/usdc.webp";
 
 const LOGOS: Record<Token, any> = {
   weth: weth,
@@ -12,7 +12,6 @@ const LOGOS: Record<Token, any> = {
   dai: dai,
   rwt: weth,
 };
-
 
 const TokenLogo = (props: ImageProps & { token: Token; withText?: boolean }) => (
   <HStack>

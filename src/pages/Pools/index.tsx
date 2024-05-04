@@ -12,6 +12,8 @@ export default function Pools() {
 
   const isLoading = isFetchingAllDraws || isFetchingRewardTokens;
 
+  console.log("weeee", isFetchingAllDraws, isFetchingRewardTokens);
+
   return (
     <Box w="896px" mx="auto" mt={24}>
       <TitleBox

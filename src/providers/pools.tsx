@@ -17,8 +17,8 @@ const PoolsContext = createContext<State | null>(null);
 
 const PoolsProvider = ({ children }: Children) => {
   const { liveDraws, clearingDraws, closedDraws, isPending: isFetchingAllDraws, allRewardTokens } = useAllDraws();
-
   const { tokenInfo: rewardTokens, isPending: isFetchingRewardTokens } = useRewardTokens(allRewardTokens);
+  console.log("rewardTokens", rewardTokens);
 
   return (
     <PoolsContext.Provider
