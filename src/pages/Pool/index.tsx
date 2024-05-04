@@ -30,6 +30,8 @@ enum TabType {
 export default function Pool() {
   const { ytTokenBalance, ytTokenSymbol, prizePoolUsd, onMint, ytMintPending, ytMintError, depositTokens } = usePool();
 
+  const isLoading = !depositTokens.length;
+
   const [tab, setTab] = useState<number>(0);
 
   const isReadyToBuy = ytTokenBalance && ytTokenBalance > BigInt(0);

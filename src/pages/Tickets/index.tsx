@@ -1,4 +1,5 @@
 import { Box, Card, Flex, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import TitleBox from "../../components/TitleBox";
 import { useTickets } from "../../providers/tickets";
 import { Draw } from "../../types/lottery";
 import DrawCard from "./DrawCard";
@@ -12,7 +13,10 @@ export default function Tickets() {
 
   return (
     <Box w="896px" mx="auto" mt={24}>
-      <Heading variant="main-heading">Tickets</Heading>
+      <TitleBox
+        headingText="Tickets"
+        subText="Missed the boat, its not too late to buy tickets if you are feeling lucky"
+      />
       <VStack align="left" spacing="22px">
         <DrawCard title="Top Jackpot" draw={jackpot} position={0} icon={gold_icon} />
         <DrawCard title="Mini Jackpot" draw={miniJackpot} position={1} icon={silver_icon} imageWidth="3rem" />

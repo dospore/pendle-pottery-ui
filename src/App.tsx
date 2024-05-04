@@ -2,10 +2,12 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Layout from "./components/Layout";
 
+import History from "./pages/History";
 import Pool from "./pages/Pool";
 import Pools from "./pages/Pools";
 import Tickets from "./pages/Tickets";
 
+import HistoryProvider from "./providers/history";
 import PoolProvider from "./providers/pool";
 import PoolsProvider from "./providers/pools";
 import TicketsProvider from "./providers/tickets";
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
           <TicketsProvider>
             <Tickets />
           </TicketsProvider>
+        ),
+      },
+      {
+        path: "history",
+        element: (
+          <HistoryProvider>
+            <History />
+          </HistoryProvider>
         ),
       },
     ],

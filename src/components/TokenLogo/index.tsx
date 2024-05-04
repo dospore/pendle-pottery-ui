@@ -13,7 +13,7 @@ const LOGOS: Record<Token, any> = {
 
 const TokenLogo = (props: ImageProps & { token: Token; withText?: boolean }) => (
   <HStack>
-    <Image src={LOGOS[props.token]} {...props} w="1rem" />
+    <Image src={LOGOS[props.token?.toLowerCase() ?? ""]} {...props} w="1rem" />
     {props.withText && (
       <Text as="span" textTransform="uppercase" fontWeight={600} opacity={0.8} letterSpacing="0.5px">
         {props.token}

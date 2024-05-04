@@ -13,6 +13,7 @@ const paths: Record<string, number> = {
   pools: NavRouteIndex.Pools,
   pool: NavRouteIndex.Pools,
   tickets: NavRouteIndex.Tickets,
+  history: NavRouteIndex.History,
 };
 
 type Props = {} & Children;

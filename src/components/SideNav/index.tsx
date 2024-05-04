@@ -4,7 +4,8 @@ import { NavRouteIndex } from "../../types/nav";
 
 import PotteryLogo from "../PotteryLogo";
 
-import pools_icon from "../../assets/ticket.svg";
+import lotto_icon from "../../assets/lotto.png";
+import prize_icon from "../../assets/prize.svg";
 import ticket_icon from "../../assets/ticket.svg";
 
 const PATHS: {
@@ -14,7 +15,7 @@ const PATHS: {
 }[] = [
   {
     text: "Pools",
-    icon: pools_icon,
+    icon: lotto_icon,
     key: NavRouteIndex.Pools,
     route: "/pools",
   },
@@ -23,6 +24,12 @@ const PATHS: {
     icon: ticket_icon,
     key: NavRouteIndex.Tickets,
     route: "/tickets",
+  },
+  {
+    text: "History",
+    icon: prize_icon,
+    key: NavRouteIndex.History,
+    route: "/history",
   },
 ];
 

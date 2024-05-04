@@ -1,6 +1,7 @@
 import { Box, Card, Flex, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import lotto_banner from "../../assets/lotto_banner.png";
 import PulsingIcon from "../../components/PulsingIcon";
+import TitleBox from "../../components/TitleBox";
 import { usePools } from "../../providers/pools";
 import DrawTable from "./DrawTable";
 
@@ -9,12 +10,10 @@ export default function Pools() {
 
   return (
     <Box w="896px" mx="auto" mt={24}>
-      <Box mb={12}>
-        <Heading variant="main-heading">Deposit</Heading>
-        <Text fontSize="md" opacity={0.7}>
-          Deposit Pendle YT tokens or yield bearing assets into Pendle for a chance to win
-        </Text>
-      </Box>
+      <TitleBox
+        headingText="Deposit"
+        subText="Deposit Pendle YT tokens or yield bearing assets into Pendle for a chance to win"
+      />
       <VStack align="left" spacing="22px">
         <Box>
           <HStack>

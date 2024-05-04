@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { parseBigInt } from "../helpers/util";
+import { useDepositTokens } from "../hooks/useDepositTokens";
 import { useDraw } from "../hooks/useDraw";
 import { useMint } from "../hooks/useMint";
 import { useYTToken } from "../hooks/useYTToken";
@@ -21,6 +22,8 @@ const PoolProvider = ({ children }: Children) => {
   const { tokenInfo: depositTokens, refetch: depositTokenRefetch } = useDepositTokens();
   const { tokenInfo: ytTokenInfo, refetch: ytTokenRefetch } = useYTToken(draw.ytTokenAddress);
   const { mint, calling: ytMintPending, error: ytMintError } = useMint();
+
+  console.log("de", depositTokens);
 
   const onMint = async (ytAmount: bigint) => {
     const ytAmountBn = parseBigInt(ytAmount);

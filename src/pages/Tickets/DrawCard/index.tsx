@@ -29,7 +29,7 @@ const DrawCard = ({
       <Text variant="label" mb={2}>
         {title}
       </Text>
-      <Box position="absolute" borderRadius="4px" bg="gray.300" right={6} top={"1rem"} p={2}>
+      <Box position="absolute" borderRadius="4px" border="1px" borderColor="gray.100" right={6} top={3} p={2}>
         <Countdown date={draw.drawTime} />
       </Box>
       <HStack>

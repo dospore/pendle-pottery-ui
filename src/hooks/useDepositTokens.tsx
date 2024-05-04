@@ -11,7 +11,7 @@ export const useDepositTokens = (): {
   refetch: () => void;
 } => {
   const { address } = useAccount();
-  const config = useConfig();
+  const { config } = useConfig();
   const depositTokens = config.depositTokens;
 
   const { tokens, isPending, refetch } = useTokens(
@@ -38,11 +38,7 @@ export const useDepositTokens = (): {
       tokenIndex += 1;
     }
 
-    return {
-      symbol: tokens[0].result,
-      address: ytToken,
-      balance: tokens[1].result,
-    };
+    return res;
   }, [tokens, depositTokens]);
 
   return {

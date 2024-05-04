@@ -50,12 +50,12 @@ const TokenSelectModal = ({ isOpen, onClose, tokens, onTokenSelect }: Props) => 
                 {tokens.map(({ symbol, balance }) => (
                   <Tr
                     transition="0.3s"
-                    onClick={() => onTokenSelect(token)}
+                    onClick={() => onTokenSelect(symbol)}
                     cursor="pointer"
                     _hover={{ bg: "gray.300" }}
                   >
                     <Td>
-                      <TokenLogo token={token} withText />
+                      <TokenLogo token={symbol} withText />
                     </Td>
                     <Td>{formatBigInt(balance)}</Td>
                   </Tr>
