@@ -1,6 +1,5 @@
 import { Box, Flex, type FlexProps, keyframes } from "@chakra-ui/react";
-
-type Status = "upcoming" | "live" | "closed";
+import { Status } from "../../types/lottery";
 
 const config: Record<
   Status,
@@ -9,7 +8,7 @@ const config: Record<
     keyFrames?: any;
   }
 > = {
-  upcoming: {
+  [Status.CLEARING]: {
     bg: "#0A5ED9",
     keyFrames: keyframes({
       "0%": {
@@ -20,7 +19,7 @@ const config: Record<
       },
     }),
   },
-  live: {
+  [Status.LIVE]: {
     bg: "#38A169",
     keyFrames: keyframes({
       "0%": {
@@ -31,7 +30,7 @@ const config: Record<
       },
     }),
   },
-  closed: {
+  [Status.CLOSED]: {
     bg: "#AAA",
   },
 };

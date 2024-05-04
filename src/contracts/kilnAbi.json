@@ -47,6 +47,19 @@
   },
   {
     "type": "function",
+    "name": "ID",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "approve",
     "inputs": [
       {
@@ -673,6 +686,11 @@
   {
     "type": "error",
     "name": "LotteryNotOver",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MintWindowEndsAfterYtExpiration",
     "inputs": []
   },
   {

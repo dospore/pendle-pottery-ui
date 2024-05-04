@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 
 import Countdown from "../../../components/Countdown";
 import { formatBigInt, formatUsd } from "../../../helpers/util";
+import { Status } from "../../../types/lottery";
 
 type Props = {
   draws: Draw[];
@@ -51,11 +52,13 @@ const DrawTable = ({ draws }: Props) => {
                   </Text>
                 </VStack>
               </Td>
-              <Td isNumeric>{draw.userEntries ? draw.userEntries : "-"}</Td>
+              <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
               <Td isNumeric>{draw.players}</Td>
               <Td isNumeric>{draw.tickets}</Td>
               <Td>
-                <Countdown date={draw.drawTime} />
+                <Countdown
+                  date={draw.status === Status.LIVE ? draw.mintWindowEndTimestamp : draw.lotteryEndTimestamp}
+                />
               </Td>
               <Td>
                 <Link to={`/pool/${draw.id}`}>

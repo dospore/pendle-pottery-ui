@@ -13,6 +13,6 @@ type Props = {
   date: number;
 };
 
-const Countdown = ({ date }: Props) => <ReactCountdown date={date} renderer={renderer} />;
+const Countdown = ({ date }: Props) => <ReactCountdown date={date} /* renderer={renderer} */ />;
 
 export default Countdown;

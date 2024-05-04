@@ -1,17 +1,19 @@
 import { http, createConfig } from "wagmi";
-import { mainnet, sepolia } from "wagmi/chains";
+import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 
 export const config = createConfig({
-  chains: [mainnet, sepolia],
+  chains: [arbitrum, arbitrumSepolia, base, mantle],
   connectors: [
     injected(),
-    coinbaseWallet({ appName: "Create Wagmi" }),
+    coinbaseWallet({ appName: "Pottery Lottery" }),
     walletConnect({ projectId: import.meta.env.VITE_WC_PROJECT_ID }),
   ],
   transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    [arbitrum.id]: http(),
+    [arbitrumSepolia.id]: http(),
+    [base.id]: http(),
+    [mantle.id]: http(),
   },
 });
 

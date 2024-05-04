@@ -5,20 +5,20 @@ import type { Children } from "../types/react";
 
 type State = {
   liveDraws: Draw[];
-  upcomingDraws: Draw[];
+  clearingDraws: Draw[];
   closedDraws: Draw[];
 };
 
 const PoolsContext = createContext<State | null>(null);
 
 const PoolsProvider = ({ children }: Children) => {
-  const { liveDraws, upcomingDraws, closedDraws } = useAllDraws();
+  const { liveDraws, clearingDraws, closedDraws } = useAllDraws();
 
   return (
     <PoolsContext.Provider
       value={{
         liveDraws,
-        upcomingDraws,
+        clearingDraws,
         closedDraws,
       }}
     >

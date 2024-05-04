@@ -1,17 +1,17 @@
-import { arbitrum, arbitrumSepolia, base, mantle } from "wagmi/chains";
+import { arbitrum, arbitrumSepolia, base, mainnet, mantle } from "wagmi/chains";
 import type { SupportedNetwork } from "../types/shared";
 
 export const chainConfig: Record<SupportedNetwork, Config> = {
-  [arbitrum]: {
+  [arbitrum.id]: {
     kilnAddresses: [],
   },
-  [arbitrumSepolia]: {
+  [arbitrumSepolia.id]: {
+    kilnAddresses: ["0x6C83Eb8daA2ed7970b3e158D8820139fC6721704"],
+  },
+  [mantle.id]: {
     kilnAddresses: [],
   },
-  [mantle]: {
-    kilnAddresses: [],
-  },
-  [base]: {
+  [base.id]: {
     kilnAddresses: [],
   },
 };
@@ -23,7 +23,7 @@ const emptyConfig: Config = {
 export const getConfig = (chainId: number) => {
   const config = chainConfig[chainId];
   if (!config) {
-    console.log(`Chain id ${chainId} not supported`);
+    console.debug(`Chain id ${chainId} not supported`);
     return emptyConfig;
   }
   return config;

@@ -1,99 +1,118 @@
-import { useEffect, useState } from "react";
-import { type BaseError, useAccount, useReadContracts } from "wagmi";
+import { useEffect, useMemo, useState } from "react";
+import { useAccount, useBlockNumber } from "wagmi";
 import { useConfig } from "../providers/config";
-import { useKilnBalances } from "./useKilnBalances";
+import { Status } from "../types/lottery";
+import { useKilns } from "./useKilns";
 
 import type { Draw } from "../types/lottery";
 
 const drawTime = Date.now() + 1000 * 1000;
 
-type State = {
+type AllDraws = {
   liveDraws: Draw[];
   clearingDraws: Draw[];
   closedDraws: Draw[];
 };
 
-const fetchDraws = async (): Promise<State> => {
-
-  // Get current block number
-  // 
-  // For each kiln,
-  // if block number > kiln.lotteryEnd() -> closed
-  // if block number > kiln.mintWindowEnd() -> clearing
-  // else -> liveDraws
-  // 
-  // ID: kiln.ID();
-  // prizePool: 
-
-  return {
-    liveDraws: [
-      {
-        id: 1,
-        prizePool: BigInt(8900000000000000000),
-        prizePoolUsd: BigInt(8900000000000000000),
-        rewardTokens: ["ETH"],
-        tickets: 42000,
-        players: 69,
-        drawTime,
-      },
-    ],
-    clearingDraws: [
-      {
-        id: 2,
-        prizePool: BigInt(900000000000000000),
-        prizePoolUsd: BigInt(900000000000000000),
-        rewardTokens: ["ETH"],
-        tickets: 1600,
-        players: 15,
-        drawTime,
-      },
-    ],
-    closedDraws: [
-      {
-        id: 420,
-        prizePool: BigInt(900000000000000000),
-        prizePoolUsd: BigInt(900000000000000000),
-        rewardTokens: ["ETH"],
-        tickets: 1600,
-        players: 15,
-        drawTime,
-      },
-      {
-        id: 69,
-        prizePool: BigInt(900000000000000000),
-        prizePoolUsd: BigInt(900000000000000000),
-        rewardTokens: ["ETH"],
-        tickets: 1600,
-        players: 15,
-        drawTime,
-      },
-    ],
-  };
+const MOCK_STATE = {
+  liveDraws: [
+    {
+      id: 1,
+      prizePool: BigInt(8900000000000000000),
+      prizePoolUsd: BigInt(8900000000000000000),
+      rewardTokens: ["ETH"],
+      tickets: 42000,
+      players: 69,
+      drawTime,
+    },
+  ],
+  clearingDraws: [
+    {
+      id: 2,
+      prizePool: BigInt(900000000000000000),
+      prizePoolUsd: BigInt(900000000000000000),
+      rewardTokens: ["ETH"],
+      tickets: 1600,
+      players: 15,
+      drawTime,
+    },
+  ],
+  closedDraws: [
+    {
+      id: 420,
+      prizePool: BigInt(900000000000000000),
+      prizePoolUsd: BigInt(900000000000000000),
+      rewardTokens: ["ETH"],
+      tickets: 1600,
+      players: 15,
+      drawTime,
+    },
+    {
+      id: 69,
+      prizePool: BigInt(900000000000000000),
+      prizePoolUsd: BigInt(900000000000000000),
+      rewardTokens: ["ETH"],
+      tickets: 1600,
+      players: 15,
+      drawTime,
+    },
+  ],
 };
 
-export const useAllDraws = (): State => {
+export const useAllDraws = (): AllDraws => {
   const { address } = useAccount();
   const { config } = useConfig();
-  console.log("kilnAddresses", config.kilnAddresses);
 
-  const balances = useKilnBalances(config.kilnAddresses, address);
+  const { kilns } = useKilns(config.kilnAddresses, address);
 
-  const [draws, setDraws] = useState<State>({
-    liveDraws: [],
-    upcomingDraws: [],
-    closedDraws: [],
-  });
+  return useMemo(() => {
+    const now = Date.now();
 
-  // this useEffect runs once on browser mount
-  useEffect(() => {
-    fetchDraws()
-      .then((allDraws) => {
-        setDraws(allDraws);
-      })
-      .catch((err) => {
-        console.log("Failed to fetch draws");
-      });
-  }, []);
+    // collate all of it to be state
+    const res = {
+      liveDraws: [],
+      clearingDraws: [],
+      closedDraws: [],
+    };
+    if (!kilns) {
+      return res;
+    }
 
-  return draws;
+    const l = 5;
+
+    for (let i = 0; i < kilns.length; i += l) {
+      const id = kilns[i].result;
+      const lotteryEnd = kilns[i + 1].result;
+      const mintWindowEnd = kilns[i + 2].result;
+      const supply = kilns[i + 3].result;
+      const balance = kilns[i + 4].result;
+
+      const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
+      const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
+
+      const kiln = {
+        id: Number(id),
+        rewardTokens: ["ETH"],
+        prizePool: BigInt(0),
+        prizePoolUsd: BigInt(0),
+        tickets: Number(supply),
+        userTickets: Number(balance),
+        lotteryEndTimestamp,
+        mintWindowEndTimestamp,
+      };
+
+      if (now > lotteryEndTimestamp) {
+        kiln.status = Status.CLOSED;
+        res.closedDraws.push(kiln);
+      } else if (now > mintWindowEndTimestamp) {
+        kiln.status = Status.CLEARING;
+        res.clearingDraws.push(kiln);
+      } else {
+        kiln.status = Status.LIVE;
+        res.liveDraws.push(kiln);
+      }
+    }
+
+    return res;
+  }, [kilns]);
 };

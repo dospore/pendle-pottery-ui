@@ -5,7 +5,7 @@ import { usePools } from "../../providers/pools";
 import DrawTable from "./DrawTable";
 
 export default function Pools() {
-  const { liveDraws, upcomingDraws, closedDraws } = usePools();
+  const { liveDraws, clearingDraws, closedDraws } = usePools();
 
   return (
     <Box w="896px" mx="auto" mt={24}>
@@ -27,11 +27,11 @@ export default function Pools() {
         </Box>
         <Box>
           <HStack>
-            <PulsingIcon status="upcoming" />
-            <Text variant="label">Upcoming</Text>
+            <PulsingIcon status="clearing" />
+            <Text variant="label">Clearing</Text>
           </HStack>
           <Card p={6}>
-            <DrawTable draws={upcomingDraws} />
+            <DrawTable draws={clearingDraws} />
           </Card>
         </Box>
         <Box>
@@ -40,7 +40,7 @@ export default function Pools() {
             <Text variant="label">Closed</Text>
           </HStack>
           <Card p={6}>
-            <DrawTable draws={upcomingDraws} />
+            <DrawTable draws={closedDraws} />
           </Card>
         </Box>
       </VStack>

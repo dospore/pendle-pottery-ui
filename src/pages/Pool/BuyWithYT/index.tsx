@@ -27,8 +27,6 @@ const MOCK_TOKENS = [
 const BuyWithYT = ({ ytTokenSymbol, ytTokenBalance, disabled }: Props) => {
   const [depositAmount, setDepositAmount] = useState<string | undefined>();
 
-  console.log("disabled", disabled);
-
   return (
     <Box>
       <TokenInput
