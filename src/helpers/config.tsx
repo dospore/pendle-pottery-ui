@@ -19,7 +19,8 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
       // "0x85BCC08BE776AEE910e1b36F1A7Ae39db696D8e7",
       "0xdc1caA5642578883f5BC5f6aB75119Bfd68b02d3",
       "0x2a8D2aC1EB91966f2b0d06dcEbdDB8D8109Cd471",
-      "0xd602ca529298C6330fA1E0499DF4fa6049d8E759"
+      "0xd602ca529298C6330fA1E0499DF4fa6049d8E759",
+      "0x383796d723CF386465ebDd917a757fd2F655acfB"
     ],
     depositTokens: [
       {
