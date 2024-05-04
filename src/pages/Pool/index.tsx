@@ -57,7 +57,7 @@ export default function Pool() {
         </Box>
       </Link>
       <Box>
-        <Text variant="label">Enter for a chance to win {formatUsd(prizePoolUsd)}</Text>
+        <Text variant="label">Enter for a chance to win</Text>
       </Box>
       <VStack spacing="16px" align="left">
         <Card p={6}>
@@ -70,7 +70,7 @@ export default function Pool() {
               If you don't have any YT tokens you can buy from Pendle with any supported ERC20 token and then deposit
             </Text>
           </Box>
-          <Tabs isFitted variant="soft-rounded" onChange={setTab}>
+          <Tabs isFitted variant="soft-rounded" onChange={setTab} colorScheme="orange">
             <TabList mb="1em">
               <Tab>Pay with YT</Tab>
               <Tab>Pay with Tokens</Tab>

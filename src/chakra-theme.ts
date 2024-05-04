@@ -105,9 +105,10 @@ export const theme = extendTheme({
     },
     Skeleton: {
       baseStyle: {
+        opacity: 0.2,
         _light: {
-          [$startColor.variable]: 'colors.yellow.100',
-          [$endColor.variable]: 'colors.yellow.400',
+          [$startColor.variable]: 'colors.yellow.200',
+          [$endColor.variable]: 'colors.yellow.500',
         },
         _dark: {
           [$startColor.variable]: 'colors.yellow.800',
