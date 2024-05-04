@@ -79,7 +79,7 @@ const DrawTable = ({ draws, isLoading, emptyText, status, rewardTokens }: Props)
             <Tr key={draw.id}>
               <Td>{draw.id}</Td>
               <Td>
-                <PrizePool ytTokenAddress={draw.ytTokenAddress} kilnAddress={draw.kilnAddress} yieldDuration={1000} />
+                <PrizePool ytTokenAddress={draw.ytTokenAddress} kilnAddress={draw.kilnAddress} yieldDuration={draw.lotteryEndTimestamp - draw.mintWindowEndTimestamp} />
               </Td>
               <Td>
                 <RewardTokenList allRewardTokens={rewardTokens} lottoRewardTokens={draw.rewardTokens} />

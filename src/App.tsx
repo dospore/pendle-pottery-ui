@@ -6,6 +6,7 @@ import History from "./pages/History";
 import Pool from "./pages/Pool";
 import Pools from "./pages/Pools";
 import Tickets from "./pages/Tickets";
+import Landing from "./pages/Landing";
 
 import HistoryProvider from "./providers/history";
 import PoolProvider from "./providers/pool";
@@ -23,6 +24,12 @@ const router = createBrowserRouter([
     // TODO error element
     // errorElement: <ErrorBoundary />,
     children: [
+      {
+        path: "/",
+        element: (
+          <Landing />
+        ),
+      },
       {
         path: "pools",
         element: (

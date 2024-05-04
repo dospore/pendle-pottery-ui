@@ -1,4 +1,7 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, cssVar } from "@chakra-ui/react";
+
+const $startColor = cssVar('skeleton-start-color')
+const $endColor = cssVar('skeleton-end-color')
 
 // const fonts = "Inter Variable, sans-serif";
 const fonts = "Oswald Variable, sans-serif";
@@ -99,6 +102,18 @@ export const theme = extendTheme({
           px: 0,
         },
       },
+    },
+    Skeleton: {
+      baseStyle: {
+        _light: {
+          [$startColor.variable]: 'colors.yellow.100',
+          [$endColor.variable]: 'colors.yellow.400',
+        },
+        _dark: {
+          [$startColor.variable]: 'colors.yellow.800',
+          [$endColor.variable]: 'colors.yellow.600',
+        },
+      }
     },
     Popover: {
       variants: {
