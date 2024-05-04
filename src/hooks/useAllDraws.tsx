@@ -6,11 +6,22 @@ const drawTime = Date.now() + 1000 * 1000;
 
 type State = {
   liveDraws: Draw[];
-  upcomingDraws: Draw[];
+  clearingDraws: Draw[];
   closedDraws: Draw[];
 };
 
 const fetchDraws = async (): Promise<State> => {
+
+  // Get current block number
+  // 
+  // For each kiln,
+  // if block number > kiln.lotteryEnd() -> closed
+  // if block number > kiln.mintWindowEnd() -> clearing
+  // else -> liveDraws
+  // 
+  // ID: kiln.ID();
+  // prizePool: 
+
   return {
     liveDraws: [
       {
@@ -23,7 +34,7 @@ const fetchDraws = async (): Promise<State> => {
         drawTime,
       },
     ],
-    upcomingDraws: [
+    clearingDraws: [
       {
         id: 2,
         prizePool: BigInt(900000000000000000),
