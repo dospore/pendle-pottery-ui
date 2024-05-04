@@ -33,7 +33,7 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
     ],
   },
   [mantle.id]: {
-    kilnAddresses: ["0xA9abe6Cc1342d73Dbfcd43F8bEBB4906F8A4AeCd"],
+    kilnAddresses: ["0x6C7585eFe8ECE82548fe2BAC8bEcD98Ef26DFcb1"],
     depositTokens: [
       {
         address: "0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9",

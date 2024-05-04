@@ -1,6 +1,6 @@
 import { Box, Grid, Hide, Image, Show } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { NavRouteIndex } from "../../types/nav";
 import MobilePlaceHolder from "../MobilePlaceHolder";
 import SideNav from "../SideNav";
@@ -34,7 +34,10 @@ function Layout({ children }: Props) {
           <Box w="full" maxWidth={"calc(100vw - 100px)"} overflow="hidden" pb={12}>
             <TopNav />
             <Box w="full">{children}</Box>
-            <Image position="absolute" right={0} bottom={0} src={nouns_guy} w={"4rem"} />
+
+            <Link to="https://nouns.wtf/" target="_blank">
+              <Image position="absolute" right={0} bottom={0} src={nouns_guy} w={"4rem"} />
+            </Link>
           </Box>
         </Grid>
       </Show>
