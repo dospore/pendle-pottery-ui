@@ -78,7 +78,7 @@ export const useAllDraws = (): AllDraws => {
       return res;
     }
 
-    const l = 5;
+    const l = 6;
 
     for (let i = 0; i < kilns.length; i += l) {
       const id = kilns[i].result;
@@ -86,6 +86,7 @@ export const useAllDraws = (): AllDraws => {
       const mintWindowEnd = kilns[i + 2].result;
       const supply = kilns[i + 3].result;
       const balance = kilns[i + 4].result;
+      const yt = kilns[i + 5].result;
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;

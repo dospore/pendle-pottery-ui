@@ -38,6 +38,11 @@ export const useKilns = (
           functionName: "balanceOf",
           args: [account],
         },
+        {
+          address: contract,
+          abi: kilnAbi,
+          functionName: "yt",
+        },
       ]),
     [account, kilnContractAddresses],
   );
