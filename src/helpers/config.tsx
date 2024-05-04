@@ -3,13 +3,16 @@ import type { Config, SupportedNetwork } from "../types/shared";
 
 export const chainConfig: Record<SupportedNetwork, Config> = {
   [arbitrum.id]: {
-    kilnAddresses: [],
+    kilnAddresses: ["0x9a36fB56a435f449e66738f88520091929Da5f2a"],
     depositTokens: [
       {
         address: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
         symbol: "USDC",
       },
     ],
+    fixedRewardTokens: [
+      '0x0341c0c0ec423328621788d4854119b97f44e391' // silo
+    ]
   },
   [arbitrumSepolia.id]: {
     kilnAddresses: [
@@ -40,6 +43,9 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
         symbol: "USDC",
       },
     ],
+    fixedRewardTokens: [
+      '0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34' // usde
+    ]
   },
   [base.id]: {
     kilnAddresses: [],

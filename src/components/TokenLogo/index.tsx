@@ -5,12 +5,16 @@ import dai from "../../assets/tokens/dai.webp";
 import weth from "../../assets/tokens/eth.webp";
 import generic from "../../assets/tokens/generic.svg";
 import usdc from "../../assets/tokens/usdc.webp";
+import usde from "../../assets/tokens/usde.svg";
+import silo from "../../assets/tokens/silo.svg";
 
 const LOGOS: Record<Token, any> = {
   weth: weth,
   usdc: usdc,
   dai: dai,
   rwt: weth,
+  usde: usde,
+  silo: silo
 };
 
 const TokenLogo = (props: ImageProps & { token: Token; withText?: boolean }) => (

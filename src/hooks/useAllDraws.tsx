@@ -45,7 +45,18 @@ export const useAllDraws = (): AllDraws => {
       const ytTokenAddress = kilns[i + 5].result;
       const ticketCost = kilns[i + 6].result;
       const rewardTokens = kilns[i + 7].result;
+
+      let localRewardTokens;
+      if (config.fixedRewardTokens) {
+        localRewardTokens = [...config.fixedRewardTokens]
+      } else {
+        localRewardTokens = rewardTokens;
+      }
+
+      res.allRewardTokens.push(...localRewardTokens);
+
       const winner = kilns[i + 8].result;
+
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -61,11 +72,9 @@ export const useAllDraws = (): AllDraws => {
         mintWindowEndTimestamp,
         ytTokenAddress,
         ticketCost,
-        rewardTokens,
+        rewardTokens: localRewardTokens,
         winner,
       };
-
-      res.allRewardTokens.push(...rewardTokens);
 
       if (now > lotteryEndTimestamp) {
         kiln.status = Status.CLOSED;
@@ -82,7 +91,7 @@ export const useAllDraws = (): AllDraws => {
     }
 
     return res;
-  }, [kilns, dataUpdatedAt]);
+  }, [kilns, dataUpdatedAt, config.fixedRewardTokens]);
 
   return {
     isPending,

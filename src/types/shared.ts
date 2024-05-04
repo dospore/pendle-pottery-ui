@@ -19,4 +19,5 @@ export type Config = {
     address: string;
     symbol: string;
   }[];
+  fixedRewardTokens?: string[]
 };
