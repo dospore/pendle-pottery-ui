@@ -14,12 +14,12 @@ export const useMint = (): {
     console.log(ytAmount, tickets, kilnAddress, ytAddress);
     setCalling(true);
 
-    // const approveRes = await writeContractAsync({
-    // abi: ytAbi,
-    // address: ytAddress,
-    // functionName: "approve",
-    // args: [kilnAddress, ytAmount],
-    // })
+    const approveRes = await writeContractAsync({
+      abi: ytAbi,
+      address: ytAddress,
+      functionName: "approve",
+      args: [kilnAddress, ytAmount],
+    })
 
     const res = await writeContractAsync({
       abi: kilnAbi,
