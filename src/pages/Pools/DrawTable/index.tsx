@@ -61,7 +61,7 @@ const DrawTable = ({ draws }: Props) => {
                 />
               </Td>
               <Td>
-                <Link to={`/pool/${draw.id}`}>
+                <Link to={`/pool/${draw.kilnAddress}`}>
                   <Button>Mint</Button>
                 </Link>
               </Td>

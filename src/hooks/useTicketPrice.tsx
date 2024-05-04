@@ -1,4 +1,4 @@
-import { readContract } from '@wagmi/core'
+import { readContract } from "@wagmi/core";
 import kilnAbi from "../contracts/kilnAbi.json";
 import { useConfig } from "../providers/config";
 

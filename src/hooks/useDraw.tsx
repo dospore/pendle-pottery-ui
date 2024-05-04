@@ -18,6 +18,7 @@ export const useDraw = (): Draw => {
     // collate all of it to be state
     const res = {
       id: 0,
+      kilnAddress: "",
       prizePool: BigInt(0),
       prizePoolUsd: BigInt(0),
       rewardTokens: [],
@@ -46,6 +47,7 @@ export const useDraw = (): Draw => {
 
     const kiln = {
       id: Number(id),
+      kilnAddress,
       rewardTokens: ["ETH"],
       prizePool: BigInt(0),
       prizePoolUsd: BigInt(0),

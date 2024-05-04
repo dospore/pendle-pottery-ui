@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "wagmi";
+import kilnAbi from "../contracts/kilnAbi.json";
 import { useConfig } from "../providers/config";
 import { Status } from "../types/lottery";
 import { useKilns } from "./useKilns";
-import kilnAbi from "../contracts/kilnAbi.json";
 
 import type { Draw } from "../types/lottery";
 
@@ -66,7 +66,6 @@ export const useAllDraws = (): AllDraws => {
 
   const { kilns } = useKilns(config.kilnAddresses, address);
 
-
   return useMemo(() => {
     const now = Date.now();
 
@@ -95,12 +94,12 @@ export const useAllDraws = (): AllDraws => {
 
       const kiln = {
         id: Number(id),
+        kilnAddress: config.kilnAddresses[i],
         rewardTokens: ["ETH"],
         prizePool: BigInt(0),
         prizePoolUsd: BigInt(0),
         tickets: Number(supply),
         userTickets: Number(balance),
-        ytAddress: yt,
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
         ytTokenAddress,
