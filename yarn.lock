@@ -1393,6 +1393,11 @@
     ethereum-cryptography "^2.0.0"
     micro-ftch "^0.3.1"
 
+"@fontsource-variable/oswald@^5.0.20":
+  version "5.0.20"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/oswald/-/oswald-5.0.20.tgz#9c7c6cbe5586b36cbce86ed3db69cc27adab2a5d"
+  integrity sha512-b2aMbEwGUw/mV+Zowhvpd/bayF1gEZs/Qeo5P48l5gZrwSkcgmf5wtQzGrrzJNS0n3/aoUMlmTqOhnjKLQP7Bw==
+
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.5.tgz#dcce6aff74bdf6dad1a95802b69b04a2fcb1fb36"

@@ -1,9 +1,16 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const fonts = "Inter Variable, sans-serif";
+// const fonts = "Inter Variable, sans-serif";
+const fonts = "Oswald Variable, sans-serif";
 
 export const theme = extendTheme({
-  styles: {},
+  styles: {
+    global: {
+      body: {
+        bg: "#fff -webkit-radial-gradient(100% 100%, 80% 100%, rgba(255,215,0,.2), rgba(0,0,0,0))",
+      },
+    },
+  },
   fonts: {
     heading: fonts,
     body: fonts,

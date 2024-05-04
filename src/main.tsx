@@ -7,6 +7,12 @@ import Web3Provider from "./providers/web3";
 import App from "./App.tsx";
 import { config } from "./wagmi.ts";
 
+// import "@fontsource/inter";
+// import "@fontsource-variable/inter";
+// import "@fontsource-variable/inter/wght.css"; // Specify axis
+
+import "@fontsource-variable/oswald";
+
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

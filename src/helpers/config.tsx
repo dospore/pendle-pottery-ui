@@ -24,10 +24,6 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
         address: "0x5B90C7a90925ea9A52F4646436e616C4D466019a",
         symbol: "USDC",
       },
-      {
-        address: "0x9a36fB56a435f449e66738f88520091929Da5f2a",
-        symbol: "USDC",
-      },
     ],
   },
   [mantle.id]: {
