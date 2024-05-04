@@ -24,7 +24,7 @@ const DrawTable = ({ draws }: Props) => {
         </Thead>
         <Tbody>
           {draws.map((draw) => (
-            <Tr>
+            <Tr key={draw.id}>
               <Td>{draw.id}</Td>
               <Td>
                 <VStack spacing={0} align="left">
