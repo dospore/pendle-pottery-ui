@@ -2,7 +2,7 @@ import { Box, Button, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import MintSummary from "../../../components/MintSummary";
 import TokenInput from "../../../components/TokenInput";
-import { parseBigInt } from "../../../helpers/util";
+import { formatBigInt, parseBigInt } from "../../../helpers/util";
 import type { YTToken } from "../../../types/shared";
 
 type Props = {
@@ -42,6 +42,11 @@ const BuyWithYT = ({
     setDepositAmount(undefined);
   };
 
+  const precision = BigInt(10 ** 18);
+  const tickets: number = !ticketCost
+    ? 0
+    : Math.floor(Number(formatBigInt((depositAmountBn * precision) / ticketCost)));
+
   return (
     <Box>
       <TokenInput
@@ -58,7 +63,7 @@ const BuyWithYT = ({
             {ytMintError}
           </Text>
         )}
-        <MintSummary depositAmountBn={depositAmountBn} ytTokenSymbol={ytTokenSymbol} ticketCost={ticketCost} />
+        <MintSummary tickets={tickets} ytTokenSymbol={ytTokenSymbol} ticketCost={ticketCost} />
         <Button w="full" onClick={() => onMint(depositAmountBn, onFinishMinting)} isDisabled={mintDisabled}>
           {ytMintPending ? <Spinner /> : `Mint`}
         </Button>

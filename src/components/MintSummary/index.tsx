@@ -3,14 +3,11 @@ import { formatBigInt } from "../../helpers/util";
 
 type Props = {
   ytTokenSymbol: string;
-  depositAmountBn: bigint;
-  ticketCost: bigint;
+  ticketCost?: bigint;
+  tickets: number;
 };
 
-const MintSummary = ({ depositAmountBn, ytTokenSymbol, ticketCost }: Props) => {
-  const precision = BigInt(10 ** 18);
-  const tickets = !ticketCost ? BigInt(0) : (depositAmountBn * precision) / ticketCost;
-
+const MintSummary = ({ ytTokenSymbol, ticketCost, tickets }: Props) => {
   return (
     <HStack align="left" justify="space-between" mb={2}>
       <Box>
@@ -27,7 +24,7 @@ const MintSummary = ({ depositAmountBn, ytTokenSymbol, ticketCost }: Props) => {
         <Text variant="label" as="span">
           Receive:
         </Text>{" "}
-        <Text as="span">{formatBigInt(tickets)} tickets</Text>
+        <Text as="span">{tickets} tickets</Text>
       </Box>
     </HStack>
   );
