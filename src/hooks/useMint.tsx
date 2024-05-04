@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useWriteContract } from "wagmi";
 import kilnAbi from "../contracts/kilnAbi.json";
 
@@ -23,10 +24,12 @@ export const useMint = (): {
       .finally(() => {
         setCalling(false);
       });
+    console.log("Finished depositing YT", res);
   };
 
   return {
     mint,
     calling,
+    error
   };
 };

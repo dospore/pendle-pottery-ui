@@ -28,10 +28,18 @@ enum TabType {
 }
 
 export default function Pool() {
-  const draw = usePool();
+  const {
+    ytTokenBalance,
+    ytTokenSymbol,
+    prizePoolUsd,
+    onMint,
+    ytMintPending,
+    ytMintError
+  } = usePool();
+
   const [tab, setTab] = useState<number>(0);
 
-  const isReadyToBuy = draw.ytTokenBalance && draw.ytTokenBalance > BigInt(0);
+  const isReadyToBuy = ytTokenBalance && ytTokenBalance > BigInt(0);
 
   return (
     <Box w="700px" mx="auto" mt={24}>
@@ -44,7 +52,7 @@ export default function Pool() {
         </Box>
       </Link>
       <Box>
-        <Text variant="label">Enter for a chance to win {formatUsd(draw.prizePoolUsd)}</Text>
+        <Text variant="label">Enter for a chance to win {formatUsd(prizePoolUsd)}</Text>
       </Box>
       <VStack spacing="16px" align="left">
         <Card p={6}>
@@ -68,7 +76,15 @@ export default function Pool() {
         <Card p={6}>
           <Text variant="label">Step 2. {tab === TabType.BuyWithTokens ? "Mint YT and PT" : "Buy tickets"}</Text>
           <Box pt={6}>
-            {tab === TabType.BuyWithYT && <BuyWithYT ytTokenSymbol={draw.ytTokenSymbol} />}
+            {tab === TabType.BuyWithYT && (
+              <BuyWithYT 
+                onMint={onMint}
+                ytMintPending={ytMintPending}
+                ytMintError={ytMintError}
+                ytTokenSymbol={ytTokenSymbol}
+                ytTokenBalance={ytTokenBalance}
+              />
+            )}
             {tab === TabType.BuyWithTokens && <BuyWithTokens />}
           </Box>
         </Card>
@@ -77,8 +93,11 @@ export default function Pool() {
             <Text variant="label">Step 3. Buy tickets</Text>
             <Box pt={6}>
               <BuyWithYT
-                ytTokenSymbol={draw.ytTokenSymbol}
-                ytTokenBalance={draw.ytTokenBalance}
+                onMint={onMint}
+                ytMintPending={ytMintPending}
+                ytMintError={ytMintError}
+                ytTokenSymbol={ytTokenSymbol}
+                ytTokenBalance={ytTokenBalance}
                 disabled={!isReadyToBuy}
               />
             </Box>
