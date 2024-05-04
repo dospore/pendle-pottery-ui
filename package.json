@@ -1,0 +1,38 @@
+{
+  "name": "pendle-lottery-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@tanstack/react-query": "^5.32.1",
+    "connectkit": "^1.7.3",
+    "framer-motion": "^11.1.7",
+    "react": "^18.2.0",
+    "react-blockies": "^1.4.1",
+    "react-countdown": "^2.3.5",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.0",
+    "viem": "2.x",
+    "wagmi": "^2.8.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.1.2",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.1.0",
+    "buffer": "^6.0.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  }
+}
