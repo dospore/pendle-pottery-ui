@@ -26,4 +26,7 @@ export type Draw = {
   ytTokenAddress: string;
   ytTokenSymbol: YTToken;
   ytTokenBalance?: bigint;
+
+  winner?: string;
+  rewardTokens: string[];
 };

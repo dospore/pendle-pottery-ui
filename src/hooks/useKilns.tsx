@@ -48,6 +48,16 @@ export const useKilns = (
           abi: kilnAbi,
           functionName: "ticketCost",
         },
+        {
+          address: contract,
+          abi: kilnAbi,
+          functionName: "getRewardTokens",
+        },
+        {
+          address: contract,
+          abi: kilnAbi,
+          functionName: "calculateWinner",
+        },
       ]),
     [account, kilnContractAddresses],
   );

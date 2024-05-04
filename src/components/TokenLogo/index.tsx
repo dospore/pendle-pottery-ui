@@ -9,6 +9,7 @@ const LOGOS: Record<Token, any> = {
   weth: weth,
   usdc: usdc,
   dai: dai,
+  rwt: weth,
 };
 
 const TokenLogo = (props: ImageProps & { token: Token; withText?: boolean }) => (

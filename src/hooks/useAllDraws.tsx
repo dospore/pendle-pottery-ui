@@ -14,6 +14,7 @@ type AllDraws = {
   clearingDraws: Draw[];
   closedDraws: Draw[];
   isPending: boolean;
+  allRewardTokens: string[];
 };
 
 export const useAllDraws = (): AllDraws => {
@@ -23,21 +24,21 @@ export const useAllDraws = (): AllDraws => {
   const { kilns, isPending } = useKilns(config.kilnAddresses, address);
 
   const res = useMemo(() => {
-    const now = Date.now();
-
     // collate all of it to be state
     const res = {
       liveDraws: [],
       clearingDraws: [],
       closedDraws: [],
+      allRewardTokens: [],
     };
     if (!kilns) {
       return res;
     }
 
-    const l = 7;
+    const l = 9;
     let kilnIndex = 0;
 
+    const now = Date.now();
     for (let i = 0; i < kilns.length; i += l) {
       const id = kilns[i].result;
       const lotteryEnd = kilns[i + 1].result;
@@ -46,6 +47,8 @@ export const useAllDraws = (): AllDraws => {
       const balance = kilns[i + 4].result;
       const ytTokenAddress = kilns[i + 5].result;
       const ticketCost = kilns[i + 6].result;
+      const rewardTokens = kilns[i + 7].result;
+      const winner = kilns[i + 8].result;
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -53,7 +56,6 @@ export const useAllDraws = (): AllDraws => {
       const kiln = {
         id: Number(id),
         kilnAddress: config.kilnAddresses[kilnIndex],
-        rewardTokens: ["ETH"],
         prizePool: BigInt(0),
         prizePoolUsd: BigInt(0),
         tickets: Number(supply),
@@ -62,7 +64,11 @@ export const useAllDraws = (): AllDraws => {
         mintWindowEndTimestamp,
         ytTokenAddress,
         ticketCost,
+        rewardTokens,
+        winner,
       };
+
+      res.allRewardTokens.push(...rewardTokens);
 
       if (now > lotteryEndTimestamp) {
         kiln.status = Status.CLOSED;
@@ -86,5 +92,6 @@ export const useAllDraws = (): AllDraws => {
     liveDraws: res.liveDraws,
     clearingDraws: res.clearingDraws,
     closedDraws: res.closedDraws,
+    allRewardTokens: res.allRewardTokens,
   };
 };

@@ -29,8 +29,8 @@ export const useDepositTokens = (): {
     let tokenIndex = 0;
     for (let i = 0; i < tokens.length; i += l) {
       const tokenInfo = {
-        symbol: depositTokens[i].symbol,
-        address: depositTokens[i].address,
+        symbol: depositTokens[tokenIndex].symbol,
+        address: depositTokens[tokenIndex].address,
         balance: tokens[i + 1].result,
       };
 

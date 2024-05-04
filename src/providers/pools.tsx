@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useAllDraws } from "../hooks/useAllDraws";
+import { useRewardTokens } from "../hooks/useRewardTokens";
 import type { Draw } from "../types/lottery";
 import type { Children } from "../types/react";
 
@@ -8,12 +9,16 @@ type State = {
   clearingDraws: Draw[];
   closedDraws: Draw[];
   isFetchingAllDraws: boolean;
+  rewardTokens: Record<string, TokenInfo>;
+  isFetchingRewardTokens: boolean;
 };
 
 const PoolsContext = createContext<State | null>(null);
 
 const PoolsProvider = ({ children }: Children) => {
-  const { liveDraws, clearingDraws, closedDraws, isPending: isFetchingAllDraws } = useAllDraws();
+  const { liveDraws, clearingDraws, closedDraws, isPending: isFetchingAllDraws, allRewardTokens } = useAllDraws();
+
+  const { tokenInfo: rewardTokens, isPending: isFetchingRewardTokens } = useRewardTokens(allRewardTokens);
 
   return (
     <PoolsContext.Provider
@@ -22,6 +27,8 @@ const PoolsProvider = ({ children }: Children) => {
         clearingDraws,
         closedDraws,
         isFetchingAllDraws,
+        rewardTokens,
+        isFetchingRewardTokens,
       }}
     >
       {children}

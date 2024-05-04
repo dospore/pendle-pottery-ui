@@ -15,13 +15,17 @@ export const chainConfig: Record<SupportedNetwork, Config> = {
     kilnAddresses: [
       // "0x6C83Eb8daA2ed7970b3e158D8820139fC6721704",
       // "0xa272c0e31814Bf86E60Df80BF2e8F7fEC66deCdD",
-      "0xa12CEB573742e5e5408e33d4746B15308F7C4500",
-      "0x43D290013129C59Cd8A55eD5cda8a82356C2Eb93",
+      // "0xa12CEB573742e5e5408e33d4746B15308F7C4500",
+      // "0x43D290013129C59Cd8A55eD5cda8a82356C2Eb93",
       "0x6C7585eFe8ECE82548fe2BAC8bEcD98Ef26DFcb1",
     ],
     depositTokens: [
       {
         address: "0x5B90C7a90925ea9A52F4646436e616C4D466019a",
+        symbol: "USDC",
+      },
+      {
+        address: "0x9a36fB56a435f449e66738f88520091929Da5f2a",
         symbol: "USDC",
       },
     ],

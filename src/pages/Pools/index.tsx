@@ -7,9 +7,10 @@ import { Status } from "../../types/lottery";
 import DrawTable from "./DrawTable";
 
 export default function Pools() {
-  const { liveDraws, clearingDraws, closedDraws, isFetchingAllDraws } = usePools();
+  const { liveDraws, clearingDraws, closedDraws, isFetchingAllDraws, rewardTokens, isFetchingRewardTokens } =
+    usePools();
 
-  const isLoading = isFetchingAllDraws;
+  const isLoading = isFetchingAllDraws || isFetchingRewardTokens;
 
   return (
     <Box w="896px" mx="auto" mt={24}>
@@ -29,6 +30,7 @@ export default function Pools() {
               isLoading={isLoading}
               emptyText="Sorry there are no live auctions. Buy some tickets from the clearing lottos."
               status={Status.LIVE}
+              rewardTokens={rewardTokens}
             />
           </Card>
         </Box>
@@ -43,6 +45,7 @@ export default function Pools() {
               isLoading={isLoading}
               emptyText="No auctions have cleared. Get buying."
               status={Status.CLEARING}
+              rewardTokens={rewardTokens}
             />
           </Card>
         </Box>
@@ -57,6 +60,7 @@ export default function Pools() {
               isLoading={isLoading}
               emptyText="Sorry not sorry, all the auctions must still be open."
               status={Status.CLOSED}
+              rewardTokens={rewardTokens}
             />
           </Card>
         </Box>

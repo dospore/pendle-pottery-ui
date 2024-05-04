@@ -18,8 +18,11 @@ import { Link } from "react-router-dom";
 
 import Countdown from "../../../components/Countdown";
 import EmptyLoadingRow from "../../../components/EmptyLoadingRow";
+import PrizePool from "../../../components/PrizePool";
+import RewardTokenList from "../../../components/RewardTokenList";
 import { formatBigInt, formatUsd } from "../../../helpers/util";
 import { Status } from "../../../types/lottery";
+import type { TokenInfo } from "../../../types/shared";
 
 const getAction = (status: Status) => {
   if (status === Status.LIVE) {
@@ -45,9 +48,10 @@ type Props = {
   isLoading: boolean;
   emptyText: string;
   status: Status;
+  rewardTokens: Record<string, TokenInfo>;
 };
 
-const DrawTable = ({ draws, isLoading, emptyText, status }: Props) => {
+const DrawTable = ({ draws, isLoading, emptyText, status, rewardTokens }: Props) => {
   const action = getAction(status);
 
   return (
@@ -58,6 +62,7 @@ const DrawTable = ({ draws, isLoading, emptyText, status }: Props) => {
           <Tr>
             <Th w="5%">#</Th>
             <Th w="15%">Prize Pool</Th>
+            <Th w="15%">Prize</Th>
             <Th isNumeric w="15%">
               Your Entries
             </Th>
@@ -74,14 +79,10 @@ const DrawTable = ({ draws, isLoading, emptyText, status }: Props) => {
             <Tr key={draw.id}>
               <Td>{draw.id}</Td>
               <Td>
-                <VStack spacing={0} align="left">
-                  <Text fontSize="md" fontWeight={600}>
-                    {formatBigInt(draw.prizePool)}
-                  </Text>
-                  <Text fontSize="sm" opacity={0.7}>
-                    {formatUsd(draw.prizePoolUsd)}
-                  </Text>
-                </VStack>
+                <PrizePool ytTokenAddress={draw.ytTokenAddress} kilnAddress={draw.kilnAddress} yieldDuration={1000} />
+              </Td>
+              <Td>
+                <RewardTokenList allRewardTokens={rewardTokens} lottoRewardTokens={draw.rewardTokens} />
               </Td>
               <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
               <Td isNumeric>{draw.tickets}</Td>
