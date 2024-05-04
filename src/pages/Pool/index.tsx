@@ -28,7 +28,7 @@ enum TabType {
 }
 
 export default function Pool() {
-  const { draw } = usePool();
+  const draw = usePool();
   const [tab, setTab] = useState<number>(0);
 
   const isReadyToBuy = draw.ytTokenBalance && draw.ytTokenBalance > BigInt(0);

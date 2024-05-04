@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useAccount, useBlockNumber } from "wagmi";
+import { useAccount } from "wagmi";
 import { useConfig } from "../providers/config";
 import { Status } from "../types/lottery";
 import { useKilns } from "./useKilns";
@@ -86,7 +86,7 @@ export const useAllDraws = (): AllDraws => {
       const mintWindowEnd = kilns[i + 2].result;
       const supply = kilns[i + 3].result;
       const balance = kilns[i + 4].result;
-      const yt = kilns[i + 5].result;
+      const ytTokenAddress = kilns[i + 5].result;
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -100,6 +100,7 @@ export const useAllDraws = (): AllDraws => {
         userTickets: Number(balance),
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
+        ytTokenAddress,
       };
 
       if (now > lotteryEndTimestamp) {
