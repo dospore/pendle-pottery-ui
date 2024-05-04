@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAccount, useBlockNumber } from "wagmi";
+import { readContract } from '@wagmi/core'
 import { useConfig } from "../providers/config";
 import { Status } from "../types/lottery";
 import { useKilns } from "./useKilns";
+import kilnAbi from "../contracts/kilnAbi.json";
 
 import type { Draw } from "../types/lottery";
 
@@ -65,7 +67,7 @@ export const useAllDraws = (): AllDraws => {
 
   const { kilns } = useKilns(config.kilnAddresses, address);
 
-  return useMemo(() => {
+  return useMemo(async () => {
     const now = Date.now();
 
     // collate all of it to be state
@@ -88,6 +90,12 @@ export const useAllDraws = (): AllDraws => {
       const balance = kilns[i + 4].result;
       const yt = kilns[i + 5].result;
 
+      const ytTokenSymbol = readContract(config, {
+        abi: kilnAbi,
+        address: yt,
+        functionName: "symbol",
+      })
+
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
 
@@ -98,6 +106,8 @@ export const useAllDraws = (): AllDraws => {
         prizePoolUsd: BigInt(0),
         tickets: Number(supply),
         userTickets: Number(balance),
+        ytAddress: yt,
+        ytTokenSymbol: ytTokenSymbol,
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
       };
