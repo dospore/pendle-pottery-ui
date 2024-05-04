@@ -28,14 +28,7 @@ enum TabType {
 }
 
 export default function Pool() {
-  const {
-    ytTokenBalance,
-    ytTokenSymbol,
-    prizePoolUsd,
-    onMint,
-    ytMintPending,
-    ytMintError
-  } = usePool();
+  const { ytTokenBalance, ytTokenSymbol, prizePoolUsd, onMint, ytMintPending, ytMintError, depositTokens } = usePool();
 
   const [tab, setTab] = useState<number>(0);
 
@@ -77,7 +70,7 @@ export default function Pool() {
           <Text variant="label">Step 2. {tab === TabType.BuyWithTokens ? "Mint YT and PT" : "Buy tickets"}</Text>
           <Box pt={6}>
             {tab === TabType.BuyWithYT && (
-              <BuyWithYT 
+              <BuyWithYT
                 onMint={onMint}
                 ytMintPending={ytMintPending}
                 ytMintError={ytMintError}
@@ -85,7 +78,7 @@ export default function Pool() {
                 ytTokenBalance={ytTokenBalance}
               />
             )}
-            {tab === TabType.BuyWithTokens && <BuyWithTokens />}
+            {tab === TabType.BuyWithTokens && <BuyWithTokens depositTokens={depositTokens} />}
           </Box>
         </Card>
         {tab === TabType.BuyWithTokens && (

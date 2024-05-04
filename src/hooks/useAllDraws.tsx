@@ -80,6 +80,7 @@ export const useAllDraws = (): AllDraws => {
     }
 
     const l = 7;
+    let kilnIndex = 0;
 
     for (let i = 0; i < kilns.length; i += l) {
       const id = kilns[i].result;
@@ -95,7 +96,7 @@ export const useAllDraws = (): AllDraws => {
 
       const kiln = {
         id: Number(id),
-        kilnAddress: config.kilnAddresses[i],
+        kilnAddress: config.kilnAddresses[kilnIndex],
         rewardTokens: ["ETH"],
         prizePool: BigInt(0),
         prizePoolUsd: BigInt(0),
@@ -117,6 +118,8 @@ export const useAllDraws = (): AllDraws => {
         kiln.status = Status.LIVE;
         res.liveDraws.push(kiln);
       }
+
+      kilnIndex += 1;
     }
 
     return res;

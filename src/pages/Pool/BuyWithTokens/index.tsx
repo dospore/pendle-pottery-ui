@@ -2,25 +2,13 @@ import { Box, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import TokenInput from "../../../components/TokenInput";
 import TokenSelectModal from "../../../components/TokenSelectModal";
+import type { TokenInfo } from "../../../types/shared";
 
-type Props = {};
+type Props = {
+  depositTokens: TokenInfo[];
+};
 
-const MOCK_TOKENS = [
-  {
-    token: "weth",
-    balance: BigInt(8900000000000000000),
-  },
-  {
-    token: "dai",
-    balance: BigInt(8900000000000000000),
-  },
-  {
-    token: "usdc",
-    balance: BigInt(8900000000000000000),
-  },
-];
-
-const BuyWithTokens = ({}: Props) => {
+const BuyWithTokens = ({ depositTokens }: Props) => {
   const {
     isOpen: isTokenSelectModalOpen,
     onOpen: onTokenSelectModalOpen,
@@ -28,7 +16,8 @@ const BuyWithTokens = ({}: Props) => {
   } = useDisclosure();
   const [depositAmount, setDepositAmount] = useState<string | undefined>();
   const [selectedToken, setSelectedToken] = useState<Token | undefined>();
-  const tokenBalance = BigInt(8900000000000000000);
+
+  const tokenBalance = depositTokens.find((t) => t.symbol.toLowerCase() === selectedToken) ?? BigInt(0);
 
   const onTokenSelect = (token: Token) => {
     setSelectedToken(token);
@@ -47,7 +36,7 @@ const BuyWithTokens = ({}: Props) => {
       <TokenSelectModal
         isOpen={isTokenSelectModalOpen}
         onClose={onTokenSelectModalClose}
-        tokens={MOCK_TOKENS}
+        tokens={depositTokens}
         onTokenSelect={onTokenSelect}
       />
     </Box>

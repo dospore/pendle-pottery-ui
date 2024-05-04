@@ -23,7 +23,6 @@ export const useDraw = (): Draw => {
       prizePoolUsd: BigInt(0),
       rewardTokens: [],
       tickets: 0,
-      players: 0,
       lotteryEndTimestamp: 0,
       mintWindowEndTimestamp: 0,
       ytTokenAddress: "",
@@ -41,6 +40,7 @@ export const useDraw = (): Draw => {
     const supply = kilns[3].result;
     const balance = kilns[4].result;
     const ytTokenAddress = kilns[5].result;
+    const ticketCost = kilns[6].result;
 
     const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
     const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -57,6 +57,7 @@ export const useDraw = (): Draw => {
       lotteryEndTimestamp,
       mintWindowEndTimestamp,
       ytTokenAddress,
+      ticketCost,
     };
 
     if (now > lotteryEndTimestamp) {

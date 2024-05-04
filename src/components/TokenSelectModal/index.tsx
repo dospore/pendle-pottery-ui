@@ -22,7 +22,8 @@ import TokenLogo from "../TokenLogo";
 type Props = {
   isOpen: boolean;
   tokens: {
-    token: Token;
+    address: string;
+    symbol: string;
     balance: bigint;
   }[];
   onClose: () => void;
@@ -46,7 +47,7 @@ const TokenSelectModal = ({ isOpen, onClose, tokens, onTokenSelect }: Props) => 
                 </Tr>
               </Thead>
               <Tbody>
-                {tokens.map(({ token, balance }) => (
+                {tokens.map(({ symbol, balance }) => (
                   <Tr
                     transition="0.3s"
                     onClick={() => onTokenSelect(token)}

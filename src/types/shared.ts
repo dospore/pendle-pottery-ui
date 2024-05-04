@@ -15,4 +15,8 @@ export type SupportedNetwork = arbitrum | arbitrumSepolia | mantle | base;
 export type Config = {
   chainId: SupportedNetwork;
   kilnAddresses: string[];
+  depositAddresses: {
+    address: string;
+    symbol: string;
+  }[];
 };

@@ -52,12 +52,14 @@ export const useKilns = (
     [account, kilnContractAddresses],
   );
 
-  const { data, isPending } = useReadContracts({
+  const { data, isPending, refetch } = useReadContracts({
     contracts: calls.reduce((o, a) => o.concat(a), []),
+    multicallAddress: "0xca11bde05977b3631167028862be2a173976ca11",
   });
 
   return {
     kilns: data,
     isPending,
+    refetch,
   };
 };

@@ -12,7 +12,7 @@ export default function Tickets() {
 
   return (
     <Box w="896px" mx="auto" mt={24}>
-      <Heading variant="main-heading">TICKETS</Heading>
+      <Heading variant="main-heading">Tickets</Heading>
       <VStack align="left" spacing="22px">
         <DrawCard title="Top Jackpot" draw={jackpot} position={0} icon={gold_icon} />
         <DrawCard title="Mini Jackpot" draw={miniJackpot} position={1} icon={silver_icon} imageWidth="3rem" />

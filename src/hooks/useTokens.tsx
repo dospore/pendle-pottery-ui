@@ -9,6 +9,7 @@ export const useTokens = (
 ): {
   tokens: YTTokenInfo[];
   isPending: boolean;
+  refetch: () => void;
 } => {
   const calls = useMemo(
     () =>
@@ -28,12 +29,14 @@ export const useTokens = (
     [account, tokens],
   );
 
-  const { data, isPending } = useReadContracts({
+  const { data, isPending, refetch } = useReadContracts({
     contracts: calls.reduce((o, a) => o.concat(a), []),
+    multicallAddress: "0xca11bde05977b3631167028862be2a173976ca11",
   });
 
   return {
     tokens: data,
     isPending,
+    refetch,
   };
 };

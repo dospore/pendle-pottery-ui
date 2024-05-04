@@ -9,12 +9,13 @@ export const useYTToken = (
 ): {
   tokenInfo: TokenInfo;
   isPending: boolean;
+  refetch: () => void;
 } => {
   const { address } = useAccount();
 
-  const { tokens, isPending } = useTokens([ytToken], address);
+  const { tokens, isPending, refetch } = useTokens([ytToken], address);
 
-  return useMemo(() => {
+  const tokenInfo = useMemo(() => {
     if (!tokens) {
       return {
         symbol: "",
@@ -26,6 +27,13 @@ export const useYTToken = (
       symbol: tokens[0].result,
       address: ytToken,
       balance: tokens[1].result,
+      refetch,
     };
-  }, [tokens]);
+  }, [tokens, refetch]);
+
+  return {
+    tokenInfo,
+    isPending,
+    refetch,
+  };
 };

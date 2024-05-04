@@ -1,5 +1,6 @@
 import { Button, HStack, Text } from "@chakra-ui/react";
 import ConnectButton from "../ConnectButton";
+import NetworkButton from "../NetworkButton";
 
 const TopNav = () => {
   return (
@@ -7,7 +8,10 @@ const TopNav = () => {
       <Text fontSize="2rem" lineHeight="2rem" fontWeight={700}>
         Pottery
       </Text>
-      <ConnectButton />
+      <HStack>
+        <NetworkButton />
+        <ConnectButton />
+      </HStack>
     </HStack>
   );
 };

@@ -1,27 +1,39 @@
 import { createContext, useContext, useState } from "react";
+import { parseBigInt } from "../helpers/util";
 import { useDraw } from "../hooks/useDraw";
-import { useYTToken } from "../hooks/useYTToken";
 import { useMint } from "../hooks/useMint";
+import { useYTToken } from "../hooks/useYTToken";
 import type { Draw } from "../types/lottery";
 import type { Children } from "../types/react";
+import type { TokenInfo } from "../types/shared";
 
 type State = Draw & {
-  mint: () => void,
-  ytMintPending: boolean,
-  ytMintError?: string
-}
+  mint: () => void;
+  ytMintPending: boolean;
+  ytMintError?: string;
+  depositTokens: TokenInfo[];
+};
 
-const PoolContext = createContext<Draw | null>(null);
+const PoolContext = createContext<State | null>(null);
 
 const PoolProvider = ({ children }: Children) => {
   const draw = useDraw();
-  const ytTokenInfo = useYTToken(draw.ytTokenAddress);
+  const { tokenInfo: depositTokens, refetch: depositTokenRefetch } = useDepositTokens();
+  const { tokenInfo: ytTokenInfo, refetch: ytTokenRefetch } = useYTToken(draw.ytTokenAddress);
   const { mint, calling: ytMintPending, error: ytMintError } = useMint();
 
-  const onMint = (ytAmount: bigint) => {
-    const tickets = ytAmount / draw.ticketPrice;
-    mint(tickets, draw.address);
-  }
+  const onMint = async (ytAmount: bigint) => {
+    const ytAmountBn = parseBigInt(ytAmount);
+    const tickets = ytAmountBn / draw.ticketCost;
+
+    mint(ytAmountBn, tickets, draw.kilnAddress, draw.ytTokenAddress)
+      .then(() => {
+        ytTokenRefetch();
+      })
+      .catch((err) => {
+        console.debug("Failed to mint", err);
+      });
+  };
 
   return (
     <PoolContext.Provider
@@ -46,7 +58,9 @@ const PoolProvider = ({ children }: Children) => {
 
         onMint,
         ytMintPending,
-        ytMintError
+        ytMintError,
+
+        depositTokens,
       }}
     >
       {children}
