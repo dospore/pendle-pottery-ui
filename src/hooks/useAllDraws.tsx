@@ -3,6 +3,7 @@ import { useAccount } from "wagmi";
 import { useConfig } from "../providers/config";
 import { Status } from "../types/lottery";
 import { useKilns } from "./useKilns";
+import kilnAbi from "../contracts/kilnAbi.json";
 
 import type { Draw } from "../types/lottery";
 
@@ -65,6 +66,7 @@ export const useAllDraws = (): AllDraws => {
 
   const { kilns } = useKilns(config.kilnAddresses, address);
 
+
   return useMemo(() => {
     const now = Date.now();
 
@@ -98,6 +100,7 @@ export const useAllDraws = (): AllDraws => {
         prizePoolUsd: BigInt(0),
         tickets: Number(supply),
         userTickets: Number(balance),
+        ytAddress: yt,
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
         ytTokenAddress,
