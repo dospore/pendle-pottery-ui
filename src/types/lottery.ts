@@ -1,30 +1,30 @@
 import type { YTToken } from "./shared";
 
 export enum Status {
-    CLEARING = "clearing",
-    LIVE = "live",
-    CLOSED = "closed",
+  CLEARING = "clearing",
+  LIVE = "live",
+  CLOSED = "closed",
 }
 
 export type Draw = {
-    status: Status;
-    kilnAddress: string;
+  status: Status;
+  kilnAddress: string;
 
-    prizePool: bigint;
-    prizePoolUsd: bigint;
-    rewardTokens: string[];
-    players: number;
-    tickets: number;
+  prizePool: bigint;
+  prizePoolUsd: bigint;
+  rewardTokens: string[];
+  players: number;
+  tickets: number;
 
-    drawTime: number;
-    lotteryEndTimestamp: number;
-    mintWindowEndTimestamp: number;
+  drawTime: number;
+  lotteryEndTimestamp: number;
+  mintWindowEndTimestamp: number;
 
-    ticketCost: bigint;
+  ticketCost: bigint;
 
-    userTickets?: number;
+  userTickets?: number;
 
-    ytTokenAddress: string;
-    ytTokenSymbol: YTToken;
-    ytTokenBalance?: bigint;
+  ytTokenAddress: string;
+  ytTokenSymbol: YTToken;
+  ytTokenBalance?: bigint;
 };
