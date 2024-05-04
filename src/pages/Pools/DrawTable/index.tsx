@@ -32,7 +32,6 @@ const DrawTable = ({ draws }: Props) => {
             <Th>#</Th>
             <Th>Prize Pool</Th>
             <Th isNumeric>Your Entries</Th>
-            <Th isNumeric>Players</Th>
             <Th isNumeric>Tickets</Th>
             <Th>Draws in</Th>
             <Th />
@@ -53,7 +52,6 @@ const DrawTable = ({ draws }: Props) => {
                 </VStack>
               </Td>
               <Td isNumeric>{!!draw.userTickets || draw.userTickets === 0 ? draw.userTickets : "-"}</Td>
-              <Td isNumeric>{draw.players}</Td>
               <Td isNumeric>{draw.tickets}</Td>
               <Td>
                 <Countdown
