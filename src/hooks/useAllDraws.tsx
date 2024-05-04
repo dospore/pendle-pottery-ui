@@ -67,7 +67,8 @@ export const useAllDraws = (): AllDraws => {
 
   const { kilns } = useKilns(config.kilnAddresses, address);
 
-  return useMemo(async () => {
+
+  return useMemo(() => {
     const now = Date.now();
 
     // collate all of it to be state
@@ -90,11 +91,11 @@ export const useAllDraws = (): AllDraws => {
       const balance = kilns[i + 4].result;
       const yt = kilns[i + 5].result;
 
-      const ytTokenSymbol = readContract(config, {
-        abi: kilnAbi,
-        address: yt,
-        functionName: "symbol",
-      })
+      // const ytTokenSymbol = readContract(config, {
+      //   abi: kilnAbi,
+      //   address: yt,
+      //   functionName: "symbol",
+      // })
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -107,7 +108,6 @@ export const useAllDraws = (): AllDraws => {
         tickets: Number(supply),
         userTickets: Number(balance),
         ytAddress: yt,
-        ytTokenSymbol: ytTokenSymbol,
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
       };

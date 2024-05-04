@@ -1,21 +1,20 @@
-import { useWriteContract } from "wagmi";
+import { readContract } from '@wagmi/core'
 import kilnAbi from "../contracts/kilnAbi.json";
+import { useConfig } from "../providers/config";
 
-export const useMint = (): {
-  mint: (amount: bigint, kilnAddress: string) => void;
-} => {
-  const { writeContractAsync } = useWriteContract();
+export const useTicketPrice = () => {
+  // const { writeContractAsync } = useWriteContract();
   const [calling, setCalling] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
-  const mint = async (amount: bigint, kilnAddress: string) => {
+  const mint = async (kilnAddress: string) => {
     setCalling(true);
+    const { config } = useConfig();
 
-    const res = await writeContractAsync({
+    const res = await readContract(config, {
       abi: kilnAbi,
       address: kilnAddress,
-      functionName: "depositYT",
-      args: [amount],
+      functionName: "ticketCost",
     })
       .catch((err) => {
         setError("Transaction failed");
