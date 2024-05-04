@@ -18,7 +18,7 @@ export const useAllDraws = (): AllDraws => {
   const { address } = useAccount();
   const { config } = useConfig();
 
-  const { kilns, isPending } = useKilns(config.kilnAddresses, address);
+  const { kilns, isPending, dataUpdatedAt } = useKilns(config.kilnAddresses, address);
 
   const res = useMemo(() => {
     // collate all of it to be state
@@ -82,7 +82,7 @@ export const useAllDraws = (): AllDraws => {
     }
 
     return res;
-  }, [kilns]);
+  }, [kilns, dataUpdatedAt]);
 
   return {
     isPending,

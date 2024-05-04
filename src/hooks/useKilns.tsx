@@ -7,6 +7,8 @@ export const useKilns = (
   account?: string,
 ): {
   kilns: any[];
+  refetch: () => void;
+  dataUpdatedAt: numberl
   isPending: boolean;
 } => {
   const calls = useMemo(
@@ -62,14 +64,18 @@ export const useKilns = (
     [account, kilnContractAddresses],
   );
 
-  const { data, isPending, refetch } = useReadContracts({
+  const { data, isFetching, isPending, refetch, dataUpdatedAt } = useReadContracts({
     contracts: calls.reduce((o, a) => o.concat(a), []),
     multicallAddress: "0xca11bde05977b3631167028862be2a173976ca11",
+    query: {
+      refetchInterval: 5 * 1000
+    }
   });
 
   return {
     kilns: data,
     isPending,
     refetch,
+    dataUpdatedAt
   };
 };
