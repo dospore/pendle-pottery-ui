@@ -1,5 +1,5 @@
-import { Box, Grid, Hide, Show } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Box, Grid, Hide, Image, Show } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { NavRouteIndex } from "../../types/nav";
 import MobilePlaceHolder from "../MobilePlaceHolder";
@@ -8,6 +8,8 @@ import TopNav from "../TopNav";
 
 import { useAccess } from "../../providers/access";
 import type { Children } from "../../types/react";
+
+import nouns_guy from "../../assets/nouns_guy.png";
 
 const paths: Record<string, number> = {
   pools: NavRouteIndex.Pools,
@@ -32,6 +34,7 @@ function Layout({ children }: Props) {
           <Box w="full" maxWidth={"calc(100vw - 100px)"} overflow="hidden" pb={12}>
             <TopNav />
             <Box w="full">{children}</Box>
+            <Image position="absolute" right={0} bottom={0} src={nouns_guy} w={"4rem"} />
           </Box>
         </Grid>
       </Show>
