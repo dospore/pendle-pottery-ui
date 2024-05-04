@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Button, HStack, Input, StackDivider, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, HStack, Input, Skeleton, StackDivider, Text, VStack } from "@chakra-ui/react";
 import { formatBigInt } from "../../helpers/util";
 import type { Token } from "../../types/shared";
 import TokenLogo from "../TokenLogo";
@@ -11,9 +11,10 @@ type Props = {
   setValue: (v: number | string) => void;
   onTokenSelect?: () => void;
   disabled?: boolean;
+  isLoading: boolean;
 };
 
-const TokenInput = ({ value, setValue, selectedToken, tokenBalance, onTokenSelect, disabled }: Props) => {
+const TokenInput = ({ value, setValue, selectedToken, tokenBalance, onTokenSelect, disabled, isLoading }: Props) => {
   const balance = tokenBalance ?? BigInt(0);
   const max = Number(formatBigInt(balance));
 
@@ -21,9 +22,24 @@ const TokenInput = ({ value, setValue, selectedToken, tokenBalance, onTokenSelec
     setValue(e.target.value);
   };
 
+  if (isLoading) {
+    return (
+      <VStack>
+        <HStack justify="space-between" w="full">
+          <Text fontWeight={600}>Token</Text>
+          <Skeleton>
+            <Text fontWeight={600} textAlign="right">
+              Balance: {formatBigInt(balance)}
+            </Text>
+          </Skeleton>
+        </HStack>
+        <Skeleton h="50px" w="full" />
+      </VStack>
+    );
+  }
+
   return (
     <VStack>
-      {value}
       <HStack justify="space-between" w="full">
         <Text fontWeight={600}>Token</Text>
         <Text fontWeight={600} textAlign="right">
@@ -39,6 +55,7 @@ const TokenInput = ({ value, setValue, selectedToken, tokenBalance, onTokenSelec
         borderColor="gray.300"
         px={2}
         position="relative"
+        minHeight="50.23px"
       >
         <Box
           w="full"

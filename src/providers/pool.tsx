@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { parseBigInt } from "../helpers/util";
+import { formatBigInt, parseBigInt } from "../helpers/util";
 import { useDepositTokens } from "../hooks/useDepositTokens";
 import { useDraw } from "../hooks/useDraw";
 import { useMint } from "../hooks/useMint";
@@ -9,21 +9,31 @@ import type { Children } from "../types/react";
 import type { TokenInfo } from "../types/shared";
 
 type State = Draw & {
-  mint: () => void;
+  onMint: () => void;
+  isFetchingYtToken: boolean;
   ytMintPending: boolean;
   ytMintError?: string;
   depositTokens: TokenInfo[];
+  isFetchingDepositTokens: boolean;
 };
 
 const PoolContext = createContext<State | null>(null);
 
 const PoolProvider = ({ children }: Children) => {
   const draw = useDraw();
-  const { tokenInfo: depositTokens, refetch: depositTokenRefetch } = useDepositTokens();
-  const { tokenInfo: ytTokenInfo, refetch: ytTokenRefetch } = useYTToken(draw.ytTokenAddress);
+  const {
+    tokenInfo: depositTokens,
+    refetch: depositTokenRefetch,
+    isPending: isFetchingDepositTokens,
+  } = useDepositTokens();
+  const {
+    tokenInfo: ytTokenInfo,
+    refetch: ytTokenRefetch,
+    isPending: isFetchingYtToken,
+  } = useYTToken(draw.ytTokenAddress);
   const { mint, calling: ytMintPending, error: ytMintError } = useMint();
 
-  console.log("de", depositTokens);
+  // yt balance not decreasing
 
   const onMint = async (ytAmount: bigint) => {
     const ytAmountBn = parseBigInt(ytAmount);
@@ -58,12 +68,14 @@ const PoolProvider = ({ children }: Children) => {
         ytTokenAddress: draw.ytTokenAddress,
         ytTokenSymbol: ytTokenInfo.symbol,
         ytTokenBalance: ytTokenInfo.balance,
+        isFetchingYtToken,
 
         onMint,
         ytMintPending,
         ytMintError,
 
         depositTokens,
+        isFetchingDepositTokens,
       }}
     >
       {children}

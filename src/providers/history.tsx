@@ -1,18 +1,30 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { createContext, useContext, useState } from "react";
-// import { useDraws } from "../hooks/useDraws";
+import { useAllDraws } from "../hooks/useAllDraws";
 import type { Children } from "../types/react";
 
 type State = {
-  pastDraws: Draw[];
+  closedDraws: Draw[];
+  isFetchingDraws: boolean;
+  filterForAccount: boolean;
+  toggleFilterForAccount: () => void;
 };
 
 const HistoryContext = createContext<State | null>(null);
 
 const HistoryProvider = ({ children }: Children) => {
+  const { closedDraws, isPending: isFetchingDraws } = useAllDraws();
+  const { isOpen: filterForAccount, onToggle: toggleFilterForAccount } = useDisclosure();
+
+  const filteredDraws = filterForAccount ? closedDraws.filter((d) => d.userTickets && d.userTickets > 0) : closedDraws;
+
   return (
     <HistoryContext.Provider
       value={{
-        pastDraws: [],
+        closedDraws: filteredDraws,
+        isFetchingDraws,
+        filterForAccount,
+        toggleFilterForAccount,
       }}
     >
       {children}

@@ -6,9 +6,10 @@ import type { TokenInfo } from "../../../types/shared";
 
 type Props = {
   depositTokens: TokenInfo[];
+  isLoading: boolean;
 };
 
-const BuyWithTokens = ({ depositTokens }: Props) => {
+const BuyWithTokens = ({ depositTokens, isLoading }: Props) => {
   const {
     isOpen: isTokenSelectModalOpen,
     onOpen: onTokenSelectModalOpen,

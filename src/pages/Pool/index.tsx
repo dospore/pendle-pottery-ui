@@ -28,9 +28,19 @@ enum TabType {
 }
 
 export default function Pool() {
-  const { ytTokenBalance, ytTokenSymbol, prizePoolUsd, onMint, ytMintPending, ytMintError, depositTokens } = usePool();
+  const {
+    ytTokenBalance,
+    ytTokenSymbol,
+    isFetchingYtToken,
+    prizePoolUsd,
+    onMint,
+    ytMintPending,
+    ytMintError,
+    depositTokens,
+    isFetchingDepositTokens,
+  } = usePool();
 
-  const isLoading = !depositTokens.length;
+  const isLoading = isFetchingDepositTokens || isFetchingYtToken;
 
   const [tab, setTab] = useState<number>(0);
 
@@ -79,9 +89,11 @@ export default function Pool() {
                 ytMintError={ytMintError}
                 ytTokenSymbol={ytTokenSymbol}
                 ytTokenBalance={ytTokenBalance}
+                disabled={!isReadyToBuy}
+                isLoading={isLoading}
               />
             )}
-            {tab === TabType.BuyWithTokens && <BuyWithTokens depositTokens={depositTokens} />}
+            {tab === TabType.BuyWithTokens && <BuyWithTokens depositTokens={depositTokens} isLoading={isLoading} />}
           </Box>
         </Card>
         {tab === TabType.BuyWithTokens && (
@@ -95,6 +107,7 @@ export default function Pool() {
                 ytTokenSymbol={ytTokenSymbol}
                 ytTokenBalance={ytTokenBalance}
                 disabled={!isReadyToBuy}
+                isLoading={isLoading}
               />
             </Box>
           </Card>

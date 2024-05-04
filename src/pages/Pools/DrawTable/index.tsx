@@ -32,6 +32,11 @@ const getAction = (status: Status) => {
       text: "Buy Tickets",
       route: () => "/tickets",
     };
+  } else if (status === Status.CLOSED) {
+    return {
+      text: "View results",
+      route: () => "/history",
+    };
   }
 };
 
