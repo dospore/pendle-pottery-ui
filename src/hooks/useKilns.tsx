@@ -43,6 +43,11 @@ export const useKilns = (
           abi: kilnAbi,
           functionName: "yt",
         },
+        {
+          address: contract,
+          abi: kilnAbi,
+          functionName: "ticketCost",
+        },
       ]),
     [account, kilnContractAddresses],
   );

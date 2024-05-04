@@ -79,7 +79,7 @@ export const useAllDraws = (): AllDraws => {
       return res;
     }
 
-    const l = 6;
+    const l = 7;
 
     for (let i = 0; i < kilns.length; i += l) {
       const id = kilns[i].result;
@@ -88,6 +88,7 @@ export const useAllDraws = (): AllDraws => {
       const supply = kilns[i + 3].result;
       const balance = kilns[i + 4].result;
       const ytTokenAddress = kilns[i + 5].result;
+      const ticketCost = kilns[i + 6].result;
 
       const lotteryEndTimestamp = Number(lotteryEnd) * 1000;
       const mintWindowEndTimestamp = Number(mintWindowEnd) * 1000;
@@ -103,6 +104,7 @@ export const useAllDraws = (): AllDraws => {
         lotteryEndTimestamp,
         mintWindowEndTimestamp,
         ytTokenAddress,
+        ticketCost,
       };
 
       if (now > lotteryEndTimestamp) {
