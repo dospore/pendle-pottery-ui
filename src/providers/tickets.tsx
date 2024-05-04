@@ -1,8 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import useLocalStorage from "use-local-storage";
 import { useDraws } from "../hooks/useDraws";
 import type { Children } from "../types/react";
-import { IntlCurrency, TimeFilterRange } from "../types/shared";
 
 type State = {
   jackpot: Draw;

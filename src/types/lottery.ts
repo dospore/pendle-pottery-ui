@@ -6,4 +6,7 @@ export type Draw = {
   tickets: number;
   drawTime: number;
   userTickets?: number;
+
+  ytTokenSymbol: YTToken;
+  ytTokenBalance?: bigint;
 };

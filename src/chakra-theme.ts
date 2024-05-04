@@ -34,6 +34,22 @@ export const theme = extendTheme({
   },
   components: {
     Table: {
+      variants: {
+        tokens: {
+          th: {
+            px: "2!important",
+            "&:last-child": {
+              textAlign: "right",
+            },
+          },
+          td: {
+            px: "2!important",
+            "&:last-child": {
+              textAlign: "right",
+            },
+          },
+        },
+      },
       baseStyle: {
         th: {
           "&:first-child": {
@@ -67,6 +83,13 @@ export const theme = extendTheme({
           lineHeight: "3.5rem",
           fontWeight: 700,
           testTransform: "uppercase",
+        },
+      },
+    },
+    Tabs: {
+      baseStyle: {
+        tabpanel: {
+          px: 0,
         },
       },
     },

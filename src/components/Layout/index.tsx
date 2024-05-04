@@ -10,22 +10,23 @@ import { useAccess } from "../../providers/access";
 import type { Children } from "../../types/react";
 
 const paths: Record<string, number> = {
-  "/pools": NavRouteIndex.Pools,
-  "/tickets": NavRouteIndex.Tickets,
+  pools: NavRouteIndex.Pools,
+  pool: NavRouteIndex.Pools,
+  tickets: NavRouteIndex.Tickets,
 };
 
 type Props = {} & Children;
 
 function Layout({ children }: Props) {
   const location = useLocation();
-  console.log("location", location);
+  const page = location.pathname.split("/")[1];
 
   return (
     <>
       <Show above="1100px">
         <Grid gridTemplateColumns="100px 100%" minHeight="100vh" overflowX="hidden">
           <Box>
-            <SideNav selectedNavIndex={paths[location.pathname]} />
+            <SideNav selectedNavIndex={paths[page]} />
           </Box>
           <Box w="full" maxWidth={"calc(100vw - 100px)"} overflow="hidden">
             <TopNav />
